@@ -3,33 +3,29 @@
 //pages
 
 //components
-import Caroussel from "./components/Caroussel/caroussel";
+import Main from "./components/Main/main";
 import Footer from "./components/Footer/footer";
-import Navbar from "./components/Navbar/navbar";
-import Sidebar from "./components/Sidebar/sidebar";
+import Header from "./components/Header/header";
 
 // data, styles et utilitaires
-import'./app.scss';
+import "./app.scss";
 
 function App() {
   return (
     <div className="App">
+
       <header className="App-header">
-        <Navbar />
+        <Header />
       </header>
-      
+
       <main className="App-main">
-        <Caroussel />
-        <Sidebar />
-        <div className="App-body"></div>
-        
-        <div className="card-display">
-          Je vais devenir l'affichage de mes cards
-        </div>
+        <Main />
       </main>
+
       <footer className="App-footer">
         <Footer />
       </footer>
+
     </div>
   );
 }

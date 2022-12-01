@@ -1,4 +1,6 @@
 @import './vars.scss';
-.sidebar{
-    background-color: chocolate;
+
+.sidebar {
+    grid-area: 1 / 1 / 6 / 2;
+    background-color: $color-2;
 }
