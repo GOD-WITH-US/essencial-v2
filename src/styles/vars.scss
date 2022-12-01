@@ -1,0 +1,25 @@
+//fonts
+$font-1: 'Nova Round', cursive;
+$font-2: 'Dosis', sans-serif;
+$font-3: 'Josefin Sans', serif;
+
+//generic
+$color-1: #729883;
+$color-2: #4d705d;
+$color-3: #577c52;
+$color-4: #94b182;
+$color-5: #a8c6b4;
+$white:  #F8F8FF;
+$black: 	#000010;
+
+//global
+$borderRadius: 25px;
+$shadow: 0 1px 3px #333;
+$minHeight: 95vh;
+
+@mixin verticalCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+  }
+ 

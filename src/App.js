@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+//Import
+
+//pages
+
+//components
+import Caroussel from "./components/Caroussel/caroussel";
+import Footer from "./components/Footer/footer";
+import Navbar from "./components/Navbar/navbar";
+import Sidebar from "./components/Sidebar/sidebar";
+
+// data, styles et utilitaires
+import'./app.scss';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Navbar />
       </header>
+      
+      <main className="App-main">
+        <Caroussel />
+        <Sidebar />
+        <div className="App-body"></div>
+        
+        <div className="card-display">
+          Je vais devenir l'affichage de mes cards
+        </div>
+      </main>
+      <footer className="App-footer">
+        <Footer />
+      </footer>
     </div>
   );
 }
