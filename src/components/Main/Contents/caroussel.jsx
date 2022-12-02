@@ -1,11 +1,13 @@
-import React from 'react';
-import '../../../styles/caroussel.scss';
+import { Grid, Box, Link } from "@mui/material";
+
 const Caroussel = () => {
-    return (
-        <div className='caroussel'>
-            je suis un caroussel
-        </div>
-    );
+  return (
+    <Grid item height='25%' width='100%'
+    style={{ background: "#577c52" }} 
+   >
+      caro
+    </Grid>
+  );
 };
 
 export default Caroussel;

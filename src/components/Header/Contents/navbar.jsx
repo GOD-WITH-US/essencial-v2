@@ -17,7 +17,6 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import HomeIcon from "@mui/icons-material/Home";
 import CreateIcon from "@mui/icons-material/Create";
 
-
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -149,8 +148,8 @@ export default function PrimarySearchAppBar() {
   );
 
   return (
-    <Box sx={{ flexGrow: 1  }}>
-      <AppBar position="static" style={{ background: '#2E3B55' }} >
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static" style={{ background: "#72a086" }}>
         <Toolbar>
           <Typography
             variant="h6"

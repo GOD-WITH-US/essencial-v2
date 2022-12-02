@@ -1,11 +1,12 @@
-import '../../../styles/section.scss'
-
+import { Grid, Box, Link } from "@mui/material";
 const Section = () => {
-    return (
-        <div>
-            Je vais contenir et afficher les cards 
-        </div>
-    );
+  return (
+      <Grid item height='75%' width='100%'
+       style={{ background: '#729883 ' }} 
+        >
+       Card
+      </Grid>
+  );
 };
 
 export default Section;

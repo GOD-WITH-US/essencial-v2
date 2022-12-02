@@ -1,20 +1,19 @@
-import "../../styles/main.scss";
 import Caroussel from "./Contents/caroussel";
 import Sidebar from "./Contents/sidebar";
 import Section from "./Contents/section";
+import { Grid, Box, Link } from "@mui/material";
+
 const Main = () => {
   return (
-    <div className="main">
-      <div className="sidebar">
+    <Grid container  spacing={0} height="83.7vh">
+      <Grid container spacing={0}  width="14%">
         <Sidebar />
-      </div>
-      <div className="caroussel">
+      </Grid>
+      <Grid container spacing={0}  width="86%">
         <Caroussel />
-      </div>
-      <div className="card-section">
         <Section />
-      </div>
-    </div>
+      </Grid>
+    </Grid>
   );
 };
 
