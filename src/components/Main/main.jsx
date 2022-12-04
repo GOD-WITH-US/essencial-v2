@@ -5,12 +5,12 @@ import { Grid, Box, Link } from "@mui/material";
 
 const Main = () => {
   return (
-    <Grid container  spacing={0} height="83.7vh">
-      <Grid container spacing={0}  width="14%">
+    <Grid container  spacing={0} height="88vh">
+      <Grid container spacing={0}  width="14%" >
         <Sidebar />
       </Grid>
       <Grid container spacing={0}  width="86%">
-        <Caroussel />
+        <Caroussel />  
         <Section />
       </Grid>
     </Grid>
