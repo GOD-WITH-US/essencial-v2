@@ -29,7 +29,9 @@ const Sidebar = () => {
             <IconButton size="large" color="inherit" pl={0}>
               <HandymanIcon />
             </IconButton>
-            <ListItemText primary="Tutoriel" />
+            <ListItemText 
+             sx={{ display: { xs: 'none',md:'block', lg: 'block', xl: 'block' }}}
+            primary="Tutoriel" />
           </ListItemButton>
         </ListItem>
         <br />
@@ -38,7 +40,9 @@ const Sidebar = () => {
             <IconButton size="large" color="inherit">
               <PeopleAltIcon />
             </IconButton>
-            <ListItemText primary="Amis" />
+            <ListItemText
+             sx={{ display: { xs: 'none',md:'block', lg: 'block', xl: 'block' }}}
+            primary="Amis" />
           </ListItemButton>
         </ListItem>
         <br />
@@ -47,7 +51,9 @@ const Sidebar = () => {
             <IconButton size="large" color="inherit">
               <HolidayVillageIcon />
             </IconButton>
-            <ListItemText primary="Ecovillage" />
+            <ListItemText
+             sx={{ display: { xs: 'none',md:'block', lg: 'block', xl: 'block' }}}
+             primary="Ecovillage" />
           </ListItemButton>
         </ListItem>
         <br />
@@ -56,7 +62,9 @@ const Sidebar = () => {
             <IconButton size="large" color="inherit">
               <StorefrontIcon />
             </IconButton>
-            <ListItemText primary="Marketplace" />
+            <ListItemText 
+            sx={{ display: { xs: 'none',md:'block', lg: 'block', xl: 'block' }}}
+             primary="Marketplace" />
           </ListItemButton>
         </ListItem>
       </List>

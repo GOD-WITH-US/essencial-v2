@@ -27,8 +27,8 @@ export default function RecipeReviewCard() {
   };
 
   return (
-    <Card sx={{ maxWidth: 130, mx: "auto" }}>
-      <CardMedia component="img" height="120" image={martin} alt="martin " />
+    <Card sx={{ maxWidth: 100, mx: "auto" }}>
+      <CardMedia component="img" height="100" image={martin} alt="martin " />
       <Grid container spacing={0}>
         <Typography
           sx={{ fontSize: 14, pl: 0.6 }}

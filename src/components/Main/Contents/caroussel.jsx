@@ -17,8 +17,8 @@ const Caroussel = () => {
     <Grid
       item
       width="100%"
-      height="27%"
-      pt={1}
+      height="23%"
+      py={1}
       style={{ background: "#C5B4E3" }}
     >
       <Swiper
