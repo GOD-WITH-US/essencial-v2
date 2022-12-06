@@ -13,6 +13,7 @@ import HandymanIcon from "@mui/icons-material/Handyman";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import HolidayVillageIcon from "@mui/icons-material/HolidayVillage";
 import StorefrontIcon from "@mui/icons-material/Storefront";
+import GroupsIcon from '@mui/icons-material/Groups';
 const Sidebar = () => {
   return (
     <Grid
@@ -67,7 +68,19 @@ const Sidebar = () => {
              primary="Marketplace" />
           </ListItemButton>
         </ListItem>
+      <br/>
+      <ListItem disablePadding>
+          <ListItemButton disableGutters component="a" href="/">
+            <IconButton size="large" color="inherit">
+              <GroupsIcon />
+            </IconButton>
+            <ListItemText 
+            sx={{ display: { xs: 'none',md:'block', lg: 'block', xl: 'block' }}}
+             primary="Membres" />
+          </ListItemButton>
+        </ListItem>
       </List>
+      
     </Grid>
   );
 };

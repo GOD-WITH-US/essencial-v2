@@ -18,7 +18,8 @@ const Caroussel = () => {
       item
       width="100%"
       height="23%"
-      py={1}
+      p={1}
+    
       style={{ background: "#C5B4E3" }}
     >
       <Swiper

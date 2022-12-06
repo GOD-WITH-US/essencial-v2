@@ -2,7 +2,7 @@ import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
-import { Grid, Box, Link } from "@mui/material";
+import { Grid, Box, Link, CardContent } from "@mui/material";
 import CardActions from "@mui/material/CardActions";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
@@ -28,8 +28,8 @@ export default function RecipeReviewCard() {
 
   return (
     <Card sx={{ maxWidth: 100, mx: "auto" }}>
-      <CardMedia component="img" height="100" image={martin} alt="martin " />
-      <Grid container spacing={0}>
+      <CardContent sx={{ p:0, '&:last-child': { pb: 0 }}} >
+        <CardMedia component="img" image={martin} alt="martin" height="80" />
         <Typography
           sx={{ fontSize: 14, pl: 0.6 }}
           color="text.primary"
@@ -37,9 +37,6 @@ export default function RecipeReviewCard() {
         >
           Emmanuel
         </Typography>
-      </Grid>
-      <Grid>
-        {" "}
         <Typography
           sx={{ fontSize: 11, pl: 1, mt: 0.2 }}
           variant="body2"
@@ -47,10 +44,10 @@ export default function RecipeReviewCard() {
         >
           Alsace
         </Typography>
-        <IconButton aria-label="add to favorites" sx={{ py: 0, pb: 0.2 }}>
+        <IconButton aria-label="add to favorites" sx={{ py:0 }}>
           <FavoriteIcon sx={{ fontSize: 14 }} />
         </IconButton>
-      </Grid>
+      </CardContent>
     </Card>
   );
 }
