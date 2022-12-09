@@ -9,17 +9,20 @@ import {
   CardMedia,
 } from "@mui/material";
 import manu from "../media/manu.jpeg";
+import steph from "../media/stephanie.jpeg";
+import arthur from "../media/arthur.jpeg";
+import matt from "../media/matt.jpeg";
+
 const About = () => {
   return (
-    <Grid item sx={{ height: "100%", border: "2px solid red" }}>
+    <Grid item sx={{ height: "100%", border: "2px solid red",pb:25 }}>
       <Stack
-        justifyContent="center"
+        justifyContent="space-evenly"
         alignItems="center"
-        direction={{ xs: "column", sm: "row" }}
-        spacing={{ xs: 1, sm: 2, md: 4 }}
-        m={2}
+        direction="row"
+        sx={{ flexWrap: 'wrap'}}
       >
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ m:2, width:150, height:180 }}>
           <Avatar
             sx={{ margin: "auto", width: 80, height: 80 }}
             alt="Emmanuel"
@@ -30,57 +33,70 @@ const About = () => {
               Emmanuel
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Product Owner & Lead Front
+              Product Owner &<br />Lead Front
             </Typography>
           </CardContent>
         </Card>
-        <Card sx={{ maxWidth: 345 }}>
+
+        <Card sx={{m:2,  width:150, height:180 }}>
           <Avatar
             sx={{ margin: "auto", width: 80, height: 80 }}
-            alt="Emmanuel"
-            src={manu}
+            alt="Stéphanie"
+            src={steph}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              Emmanuel
+              Stéphanie
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Product Owner & Lead Front
+              Scrum Master
             </Typography>
           </CardContent>
         </Card>
-        <Card sx={{ maxWidth: 345 }}>
+
+
+        <Card sx={{m:2,  width:150, height:180 }}>
           <Avatar
             sx={{ margin: "auto", width: 80, height: 80 }}
-            alt="Emmanuel"
-            src={manu}
+            alt="Arthur"
+            src={arthur}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              Emmanuel
+              Arthur
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Product Owner & Lead Front
+              Lead Back
             </Typography>
           </CardContent>
         </Card>
-        <Card sx={{ maxWidth: 345 }}>
+
+        <Card sx={{m:2, width:150, height:180 }}>
           <Avatar
             sx={{ margin: "auto", width: 80, height: 80 }}
-            alt="Emmanuel"
-            src={manu}
+            alt="Matthieu"
+            src={matt}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              Emmanuel
+              Matthieu
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Product Owner & Lead Front
+              Git Master
             </Typography>
           </CardContent>
         </Card>
+
+
       </Stack>
-    </Grid>
+      <Grid>
+        <Typography ml={10}  m={2}>
+          Essencial a été créé en mai 2022 avec le désir d'offrir une plateforme
+          d'échange au personnes souhaitant se reconnecter avec la nature et
+          l'humain .
+        </Typography>
+      </Grid>
+      </Grid>
   );
 };
 

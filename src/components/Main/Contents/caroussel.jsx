@@ -17,18 +17,15 @@ const Caroussel = () => {
     <Grid
       item
       width="100%"
-      height="23%"
-      p={1}
-    
+      height="auto"
+      pt={1}
       style={{ background: "#C5B4E3" }}
     >
       <Swiper
         // install Swiper modules
         slidesPerView={1}
         spaceBetween={10}
-        pagination={{
-          clickable: true,
-        }}
+  
         breakpoints={{
           320: {
             slidesPerView: 2,

@@ -1,8 +1,7 @@
 import * as React from "react";
 import { styled } from "@mui/material/styles";
-import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
-import { Grid, Box, Link, CardContent } from "@mui/material";
+import { Card, CardContent } from "@mui/material";
 import CardActions from "@mui/material/CardActions";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
