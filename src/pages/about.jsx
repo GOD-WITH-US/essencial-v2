@@ -1,13 +1,13 @@
-/* import about from "../media/about.png" */
+//Import mui
 import {
   Avatar,
   Stack,
   Grid,
-  Card,
   CardContent,
   Typography,
-  CardMedia,
 } from "@mui/material";
+
+// data, styles et utilitaires
 import manu from "../media/manu.jpeg";
 import steph from "../media/stephanie.jpeg";
 import arthur from "../media/arthur.jpeg";
@@ -15,88 +15,127 @@ import matt from "../media/matt.jpeg";
 
 const About = () => {
   return (
-    <Grid item sx={{ height: "100%", border: "2px solid red",pb:25 }}>
+    <Grid item sx={{ height: "100%" }}>
+         <Grid>
+        <Typography variant="h6" textAlign="center" ml={10} m={2}>
+  L'équipe Essencial
+        </Typography>
+      </Grid>
       <Stack
         justifyContent="space-evenly"
         alignItems="center"
         direction="row"
-        sx={{ flexWrap: 'wrap'}}
+        sx={{ flexWrap: "wrap" }}
       >
-        <Card sx={{ m:2, width:150, height:180 }}>
+        <Grid sx={{ m: 2, width: 150, height: 180 }}>
           <Avatar
             sx={{ margin: "auto", width: 80, height: 80 }}
             alt="Emmanuel"
             src={manu}
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
+            <Typography
+              textAlign="center"
+              gutterBottom
+              variant="h5"
+              component="div"
+            >
               Emmanuel
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Product Owner &<br />Lead Front
+            <Typography
+              textAlign="center"
+              variant="body2"
+              color="text.secondary"
+            >
+              Product Owner &<br />
+              Lead Front
             </Typography>
           </CardContent>
-        </Card>
+        </Grid>
 
-        <Card sx={{m:2,  width:150, height:180 }}>
+        <Grid sx={{ m: 2, width: 150, height: 180 }}>
           <Avatar
             sx={{ margin: "auto", width: 80, height: 80 }}
             alt="Stéphanie"
             src={steph}
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
+            <Typography
+              textAlign="center"
+              gutterBottom
+              variant="h5"
+              component="div"
+            >
               Stéphanie
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography
+              textAlign="center"
+              variant="body2"
+              color="text.secondary"
+            >
               Scrum Master
             </Typography>
           </CardContent>
-        </Card>
+        </Grid>
 
-
-        <Card sx={{m:2,  width:150, height:180 }}>
+        <Grid sx={{ m: 2, width: 150, height: 180 }}>
           <Avatar
             sx={{ margin: "auto", width: 80, height: 80 }}
             alt="Arthur"
             src={arthur}
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
+            <Typography
+              textAlign="center"
+              gutterBottom
+              variant="h5"
+              component="div"
+            >
               Arthur
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography
+              textAlign="center"
+              variant="body2"
+              color="text.secondary"
+            >
               Lead Back
             </Typography>
           </CardContent>
-        </Card>
+        </Grid>
 
-        <Card sx={{m:2, width:150, height:180 }}>
+        <Grid sx={{ m: 2, width: 150, height: 180 }}>
           <Avatar
             sx={{ margin: "auto", width: 80, height: 80 }}
             alt="Matthieu"
             src={matt}
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
+            <Typography
+              textAlign="center"
+              gutterBottom
+              variant="h5"
+              component="div"
+            >
               Matthieu
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography
+              textAlign="center"
+              variant="body2"
+              color="text.secondary"
+            >
               Git Master
             </Typography>
           </CardContent>
-        </Card>
-
-
+        </Grid>
       </Stack>
       <Grid>
-        <Typography ml={10}  m={2}>
+        <Typography textAlign="center" ml={10} m={2}>
           Essencial a été créé en mai 2022 avec le désir d'offrir une plateforme
-          d'échange au personnes souhaitant se reconnecter avec la nature et
-          l'humain .
+          d'échange destinée aux personnes <br /> souhaitant se reconnecter avec
+          la nature et l'humain .
         </Typography>
       </Grid>
-      </Grid>
+    </Grid>
   );
 };
 

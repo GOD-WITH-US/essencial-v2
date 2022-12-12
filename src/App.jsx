@@ -1,4 +1,5 @@
 //Import
+import { Grid } from "@mui/material";
 
 //pages
 
@@ -12,8 +13,7 @@ import "./app.scss";
 
 function App() {
   return (
-    <div className="App">
-
+    <Grid className="App">
       <header className="App-header">
         <Header />
       </header>
@@ -23,10 +23,9 @@ function App() {
       </main>
 
       <footer className="App-footer">
-        <Footer  />
+        <Footer />
       </footer>
-
-    </div>
+    </Grid>
   );
 }
 

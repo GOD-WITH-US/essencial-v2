@@ -1,8 +1,6 @@
-import React from "react";
+import { NavLink } from "react-router-dom";
 import {
   Grid,
-  Box,
-  Link,
   IconButton,
   ListItemText,
   ListItemButton,
@@ -13,7 +11,7 @@ import HandymanIcon from "@mui/icons-material/Handyman";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import HolidayVillageIcon from "@mui/icons-material/HolidayVillage";
 import StorefrontIcon from "@mui/icons-material/Storefront";
-import GroupsIcon from '@mui/icons-material/Groups';
+import GroupsIcon from "@mui/icons-material/Groups";
 const Sidebar = () => {
   return (
     <Grid
@@ -25,27 +23,42 @@ const Sidebar = () => {
       style={{ background: "#a8c6b4" }}
     >
       <List>
-        <ListItem disablePadding>
-          <ListItemButton disableGutters component="a" href="/">
-            <IconButton size="large" color="inherit" pl={0}>
-              <HandymanIcon />
-            </IconButton>
-            <ListItemText 
-             sx={{ display: { xs: 'none',md:'block', lg: 'block', xl: 'block' }}}
-            primary="Tutoriel" />
-          </ListItemButton>
-        </ListItem>
+        <NavLink  to="/tutoriel" >
+          <ListItem disablePadding>
+            <ListItemButton disableGutters component="a" to="/tutoriel">
+              <IconButton size="large" color="inherit" pl={0}>
+                <HandymanIcon />
+              </IconButton>
+              <ListItemText
+                sx={{
+                  display: {
+                    xs: "none",
+                    md: "block",
+                    lg: "block",
+                    xl: "block",
+                  },
+                }}
+                primary="Tutoriel"
+              />
+            </ListItemButton>
+          </ListItem>
+        </NavLink>
         <br />
+        <NavLink to="/amis">
         <ListItem disablePadding>
           <ListItemButton disableGutters component="a" href="/">
             <IconButton size="large" color="inherit">
               <PeopleAltIcon />
             </IconButton>
             <ListItemText
-             sx={{ display: { xs: 'none',md:'block', lg: 'block', xl: 'block' }}}
-            primary="Amis" />
+              sx={{
+                display: { xs: "none", md: "block", lg: "block", xl: "block" },
+              }}
+              primary="Amis"
+            />
           </ListItemButton>
         </ListItem>
+        </NavLink>
         <br />
         <ListItem disablePadding>
           <ListItemButton disableGutters component="a" href="/">
@@ -53,8 +66,11 @@ const Sidebar = () => {
               <HolidayVillageIcon />
             </IconButton>
             <ListItemText
-             sx={{ display: { xs: 'none',md:'block', lg: 'block', xl: 'block' }}}
-             primary="Ecovillage" />
+              sx={{
+                display: { xs: "none", md: "block", lg: "block", xl: "block" },
+              }}
+              primary="Ecovillage"
+            />
           </ListItemButton>
         </ListItem>
         <br />
@@ -63,24 +79,29 @@ const Sidebar = () => {
             <IconButton size="large" color="inherit">
               <StorefrontIcon />
             </IconButton>
-            <ListItemText 
-            sx={{ display: { xs: 'none',md:'block', lg: 'block', xl: 'block' }}}
-             primary="Marketplace" />
+            <ListItemText
+              sx={{
+                display: { xs: "none", md: "block", lg: "block", xl: "block" },
+              }}
+              primary="Marketplace"
+            />
           </ListItemButton>
         </ListItem>
-      <br/>
-      <ListItem disablePadding>
+        <br />
+        <ListItem disablePadding>
           <ListItemButton disableGutters component="a" href="/">
             <IconButton size="large" color="inherit">
               <GroupsIcon />
             </IconButton>
-            <ListItemText 
-            sx={{ display: { xs: 'none',md:'block', lg: 'block', xl: 'block' }}}
-             primary="Membres" />
+            <ListItemText
+              sx={{
+                display: { xs: "none", md: "block", lg: "block", xl: "block" },
+              }}
+              primary="Membres"
+            />
           </ListItemButton>
         </ListItem>
       </List>
-      
     </Grid>
   );
 };
