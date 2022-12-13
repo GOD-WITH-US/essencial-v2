@@ -1,14 +1,15 @@
 //Import mui
 import {
   TextField,
-  Stack,
+  
   Grid,
-  Card,
+  Stack,
   CardContent,
   Typography,
   CardMedia,
 } from "@mui/material";
-import { maxWidth } from "@mui/system";
+import Button from '@mui/material/Button';
+import SendIcon from '@mui/icons-material/Send';
 import brancheok from "../media/brancheok.jpg";
 
 const Contact = () => {
@@ -28,7 +29,7 @@ Contactez nous pour en savoir plus sur Essencial
       <Grid mb={2}>
         <TextField  id="contact-name" label="Email" type="email"  size="small"/>
       </Grid>
-      <Grid>
+      <Grid mb={2}>
         <TextField
           sx={{ width: 208 }}
           id="contact-message"
@@ -38,6 +39,9 @@ Contactez nous pour en savoir plus sur Essencial
           size="small"
         />
       </Grid>
+      <Grid> <Button size="small" variant="outlined" endIcon={<SendIcon />}>
+        Envoyer
+      </Button></Grid>
     </Grid>
   );
 };

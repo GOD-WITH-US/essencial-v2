@@ -19,8 +19,7 @@ const Caroussel = () => {
       width="100%"
       height="auto"
       py={1}
-     
-      style={{ background: "#C5B4E3" }}
+      style={{ background: "" }}
     >
       <Swiper
         // install Swiper modules

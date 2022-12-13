@@ -22,7 +22,7 @@ const Privacy = () => {
                     le service.<br/><br/> Nous n'utiliserons ni ne partagerons vos informations avec quiconque, sauf dans les cas décrits dans la
                      présente politique de confidentialité.<br/><br/>
                     Les termes utilisés dans la présente politique de confidentialité ont la même signification que dans nos conditions générales,
-                     qui sont accessibles à l'adresse <strong><a href="#">https://www.essencial.com</a></strong>.
+                     qui sont accessibles à l'adresse <strong><a href="#">www.essencial.eco</a></strong>.
                 </p>
         </Typography>
     

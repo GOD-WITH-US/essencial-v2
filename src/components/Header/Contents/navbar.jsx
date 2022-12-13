@@ -142,7 +142,7 @@ export default function PrimarySearchAppBar() {
         >
           <AccountCircle />
         </IconButton>
-        <p>Profile</p>
+        <p>Mon compte</p>
       </MenuItem>
     </Menu>
   );

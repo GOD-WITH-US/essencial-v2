@@ -26,7 +26,7 @@ export default function RecipeReviewCard() {
   };
 
   return (
-    <Card sx={{ maxWidth: 100, mx: "auto" }}>
+    <Card sx={{ backgroundColor:"#a8c6b4", maxWidth: 100, mx: "auto" }}>
       <CardContent sx={{ p:0, '&:last-child': { pb: 0 }}} >
         <CardMedia component="img" image={martin} alt="martin" height="80" />
         <Typography

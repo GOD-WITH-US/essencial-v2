@@ -7,22 +7,22 @@ const Footer = () => {
       position="fixed"
       bottom={0}
       container
-      style={{ background: "#e2c6a8" }}
+      style={{ background: "#72a086" }}
     >
       <Grid item textAlign="center" p={1} xs={12} sm={4} md={4}>
-        <NavLink to="/a-propos">
+        <NavLink style={{ color: "#004d40" }} to="/a-propos">
           <span>A propos</span>
         </NavLink>
       </Grid>
 
       <Grid item textAlign="center" p={1} xs={12} sm={4} md={4}>
-        <NavLink to="/contact">
+        <NavLink style={{ color: "#004d40" }} to="/contact">
           <span>Contact</span>
         </NavLink>
       </Grid>
 
       <Grid item textAlign="center" p={1} xs={12} sm={4} md={4}>
-        <NavLink to="/confidentialité">
+        <NavLink style={{ color: "#004d40" }} to="/confidentialité">
           <span>Confidentialité</span>
         </NavLink>
       </Grid>
