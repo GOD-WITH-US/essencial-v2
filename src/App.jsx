@@ -11,16 +11,19 @@ import Header from "./components/Header/header";
 // data, styles et utilitaires
 import "./app.scss";
 
+
 function App() {
   return (
     <Grid className="App">
-      <header className="App-header">
+
+
+<header className="App-header">
         <Header />
       </header>
 
       <main className="App-main">
         <Main />
-      </main>
+      </main> 
 
       <footer className="App-footer">
         <Footer />

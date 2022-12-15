@@ -10,7 +10,7 @@ const Main = () => {
         <Sidebar />
       </Grid>
       <Grid container spacing={0}  width="86%">
-        <Caroussel  />  
+       {/*  <Caroussel  />   */}
         <Section />
       </Grid>
     </Grid>

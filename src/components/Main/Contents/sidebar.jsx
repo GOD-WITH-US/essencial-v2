@@ -23,10 +23,10 @@ const Sidebar = () => {
       width="100%"
       style={{ background: "#a8c6b4" }}
     >
-      <List>
+     
         <NavLink style={{ color: "#004d40" }} to="/tutoriel">
-          <ListItem disablePadding>
-            <ListItemButton disableGutters component="a" to="/tutoriel">
+          <ListItem  disablePadding>
+            <ListItemButton disableGutters >
               <IconButton size="large" color="inherit" pl={0}>
                 <HandymanIcon />
               </IconButton>
@@ -47,7 +47,7 @@ const Sidebar = () => {
         <br />
         <NavLink style={{ color: "#004d40" }} to="/amis">
           <ListItem disablePadding>
-            <ListItemButton disableGutters component="a" href="/">
+            <ListItemButton disableGutters >
               <IconButton size="large" color="inherit">
                 <PeopleAltIcon />
               </IconButton>
@@ -68,7 +68,7 @@ const Sidebar = () => {
         <br />
         <NavLink style={{ color: "#004d40" }} to="/ecovillage">
           <ListItem disablePadding>
-            <ListItemButton disableGutters component="a" href="/">
+            <ListItemButton disableGutters >
               <IconButton size="large" color="inherit">
                 <HolidayVillageIcon />
               </IconButton>
@@ -89,7 +89,7 @@ const Sidebar = () => {
         <br />
         <NavLink style={{ color: "#004d40" }} to="/boutique">
           <ListItem disablePadding>
-            <ListItemButton disableGutters component="a" href="/">
+            <ListItemButton disableGutters >
               <IconButton size="large" color="inherit">
                 <StorefrontIcon />
               </IconButton>
@@ -111,7 +111,7 @@ const Sidebar = () => {
         <br />
         <NavLink style={{ color: "#004d40" }} to="/membres">
         <ListItem disablePadding>
-          <ListItemButton disableGutters component="a" href="/">
+          <ListItemButton disableGutters >
             <IconButton size="large" color="inherit">
               <GroupsIcon />
             </IconButton>
@@ -124,7 +124,7 @@ const Sidebar = () => {
           </ListItemButton>
         </ListItem>
         </NavLink>
-      </List>
+    
     </Grid>
   );
 };
