@@ -27,7 +27,7 @@ Contactez nous pour en savoir plus sur Essencial
         <TextField id="contact-vorname" label="Prénom" type="text"  size="small"/>
       </Grid>
       <Grid mb={2}>
-        <TextField  id="contact-name" label="Email" type="email"  size="small"/>
+        <TextField  id="contact-email" label="Email" type="email"  size="small"/>
       </Grid>
       <Grid mb={2}>
         <TextField

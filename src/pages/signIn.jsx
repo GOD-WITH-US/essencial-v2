@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { NavLink } from "react-router-dom";
+import { NavLink  } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -26,6 +25,7 @@ function Copyright(props) {
   );
 }
 
+
 const { palette } = createTheme();
 const { augmentColor } = palette;
 const createColor = (mainColor) => augmentColor({ color: { main: mainColor } });
@@ -36,26 +36,6 @@ const theme = createTheme({
   },
 
 });
-const styles = {
-  Input: {
-    "&.Mui-disabled": {
-      color: "purple",
-      opacity: 0.5,
-      border: "solid",
-      borderColor: "blue",
-      marginTop: "10px",
-      borderRadius: "3px"
-    },
-    "&.Mui-disabled:hover": { background: "red" }
-  },
-  Label: {
-    "&.Mui-disabled": {
-      color: "blue",
-      opacity: 0.5,
-      marginBottom: "70px"
-    }
-  }
-};
 
 
 
@@ -72,7 +52,7 @@ export default function SignIn() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Grid container component="main" sx={{ height: '122%' }}>
+      <Grid container component="main"  sx={{height: '100vh'}} >
         <CssBaseline />
         <Grid
           item
@@ -103,14 +83,15 @@ export default function SignIn() {
               Se connecter
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt:2.8 }}>
-              <TextField
+            <TextField
+                margin="normal"
                 required
-                  fullWidth
-                  id="email"
-                  label="Adresse Mail"
-                  name="email"
-                  disabled
-                  sx={styles}
+                fullWidth
+                id="email"
+                label="Adresse mail"
+                name="email"
+                autoComplete="email"
+                autoFocus
               />
               
               <TextField
@@ -150,9 +131,8 @@ export default function SignIn() {
                   </NavLink>
                 </Grid>
                 <Grid item>
-                  <NavLink style={{ color: "#729883" }}  to="#" variant="body2">
-                    {"Pas encore de compte ?"}
-                  </NavLink>
+                <NavLink to='/inscription' style={{color: "#729883"}}>Pas encore de compte ?</NavLink>
+
                 </Grid>
               </Grid>
               <Copyright sx={{ mt: 5 }} />

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { NavLink } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -45,7 +44,7 @@ export default function SignIn() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Grid container component="main" sx={{ height: '122%' }}>
+      <Grid container component="main" sx={{ height: '100vh' }}>
         <CssBaseline />
         <Grid
           item
@@ -132,8 +131,8 @@ export default function SignIn() {
             </Button>
             <Grid container>
                 <Grid item>
-                  <NavLink style={{ color: "#729883" }}  mx={"auto"} to="#" variant="body2">
-                  {"Vous avez déjà un compte ? Cliquez ici"}
+                  <NavLink style={{ color: "#729883" }}  mx={"auto"} to="/" variant="body2">
+                  {"Cliquez ici pour vous connecter"}
                   </NavLink>
                 </Grid>
                 
