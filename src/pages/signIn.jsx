@@ -1,4 +1,6 @@
 import { NavLink  } from "react-router-dom";
+import axios from "axios";
+import React, { useState } from "react";
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -25,7 +27,6 @@ function Copyright(props) {
   );
 }
 
-
 const { palette } = createTheme();
 const { augmentColor } = palette;
 const createColor = (mainColor) => augmentColor({ color: { main: mainColor } });
@@ -38,16 +39,37 @@ const theme = createTheme({
 });
 
 
-
-
 export default function SignIn() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    const emailError = document.querySelector(".email.error");
+    const passwordError = document.querySelector(".password.error");
+
+    axios({
+      method: "post",
+      url: `${process.env.REACT_APP_API_URL}api/user/login`,
+      withCredentials: true,
+      data: {
+        email,
+        password,
+      },
+    })
+      .then((res) => {
+        console.log(res);
+        if (res.data.errors) {
+          emailError.innerHTML = res.data.errors.email;
+          passwordError.innerHTML = res.data.errors.password;
+        } else {
+          window.location = "/homelog ";
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
   };
 
   return (
@@ -88,8 +110,11 @@ export default function SignIn() {
                 required
                 fullWidth
                 id="email"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
                 label="Adresse mail"
                 name="email"
+                type="text"
                 autoComplete="email"
                 autoFocus
               />
@@ -102,6 +127,8 @@ export default function SignIn() {
                 label="Mot de passe"
                 type="password"
                 id="password"
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
                 autoComplete="current-password"
               />
               <FormControlLabel
