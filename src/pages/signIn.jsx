@@ -1,6 +1,7 @@
 import { NavLink  } from "react-router-dom";
 import axios from "axios";
-import React, { useState } from "react";
+import { useState } from "react";
+
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -40,6 +41,7 @@ const theme = createTheme({
 
 
 export default function SignIn() {
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -63,13 +65,12 @@ export default function SignIn() {
           emailError.innerHTML = res.data.errors.email;
           passwordError.innerHTML = res.data.errors.password;
         } else {
-          window.location = "/homelog ";
+          window.location = "/home ";
         }
       })
       .catch((err) => {
         console.log(err);
       });
-
   };
 
   return (

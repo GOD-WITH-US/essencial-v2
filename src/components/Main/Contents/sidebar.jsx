@@ -19,7 +19,7 @@ const Sidebar = () => {
       item
       textAlign="center"
       pt={"10vh"}
-      height="100%"
+      height="92vh"
       width="100%"
       style={{ background: "#a8c6b4" }}
     >

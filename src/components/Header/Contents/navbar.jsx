@@ -1,6 +1,7 @@
 import "../../../styles/navbar.scss";
 
-import * as React from "react";
+import React, { useContext } from 'react';
+import { NavLink } from "react-router-dom";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -13,9 +14,10 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-
+import { UidContext } from"../../AppContext";
 import HomeIcon from "@mui/icons-material/Home";
 import CreateIcon from "@mui/icons-material/Create";
+
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -146,11 +148,14 @@ export default function PrimarySearchAppBar() {
       </MenuItem>
     </Menu>
   );
+  const uid = useContext(UidContext);
+  console.log(uid + " navbar");
 
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" style={{ background: "#72a086" }}>
         <Toolbar>
+          <NavLink style={{ textDecoration: "none" }}  to="/home">
           <Typography
             variant="h6"
             noWrap
@@ -159,12 +164,22 @@ export default function PrimarySearchAppBar() {
           >
             <p className="logo">Essencial</p>
           </Typography>
+          </NavLink>
+          {uid ? (
+            <Box>
+              <Typography>Bonjour</Typography>
+              <Typography>{uid}</Typography>
+            </Box>
+          ) : (
+            ""
+
+          )}
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="Search…"
+              placeholder="Rechercher…"
               inputProps={{ "aria-label": "search" }}
             />
           </Search>

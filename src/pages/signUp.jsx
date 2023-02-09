@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { NavLink } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -32,14 +34,43 @@ const theme = createTheme({
   },
 });
 
-export default function SignIn() {
+export default function SignUp() {
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [pseudo, setPseudo] = useState("");
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    const emailError = document.querySelector(".email.error");
+    const passwordError = document.querySelector(".password.error");
+    const pseudoError = document.querySelector(".pseudo.error");
+
+    axios({
+      method: "post",
+      url: `${process.env.REACT_APP_API_URL}api/user/register`,
+      withCredentials: true,
+      data: {
+        email,
+        password,
+        pseudo,
+      },
+    })
+      .then((res) => {
+        console.log(res);
+        if (res.data.errors) {
+          emailError.innerHTML = res.data.errors.email;
+          passwordError.innerHTML = res.data.errors.password;
+          pseudoError.innerHTML = res.data.errors.pseudo;
+        } else {
+          window.location = "/home ";
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+      return true;
   };
 
   return (
@@ -76,32 +107,26 @@ export default function SignIn() {
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete="given-name"
-                  name="firstName"
+              <Grid item xs={12} >
+              <TextField
                   required
                   fullWidth
-                  id="firstName"
-                  label="Prénom"
+                  id="pseudo"
+                  onChange={(e) => setPseudo(e.target.value)}
+                  value={pseudo}
+                  label="Pseudo"
+                  name="pseudo"
                   autoFocus
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Nom"
-                  name="lastName"
-                  autoComplete="family-name"
-                />
-              </Grid>
+       
               <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
                   id="email"
+                  onChange={(e) => setEmail(e.target.value)}
+                  value={email}
                   label="Adresse Mail"
                   name="email"
                   autoFocus
@@ -115,10 +140,11 @@ export default function SignIn() {
                   label="Mot de passe"
                   type="password"
                   id="password"
+                  onChange={(e) => setPassword(e.target.value)}
+                  value={password}
                   autoComplete="new-password"
                 />
               </Grid>
-            
             </Grid>
             <Button
               type="submit"
