@@ -165,15 +165,7 @@ export default function PrimarySearchAppBar() {
             <p className="logo">Essencial</p>
           </Typography>
           </NavLink>
-          {uid ? (
-            <Box>
-              <Typography>Bonjour</Typography>
-              <Typography>{uid}</Typography>
-            </Box>
-          ) : (
-            ""
-
-          )}
+          
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -185,6 +177,16 @@ export default function PrimarySearchAppBar() {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            <Box>{uid ? (
+            <Box >
+              <Typography>Bonjour</Typography>
+              <Typography>{/* {uid} */}Jason</Typography>
+            </Box>
+          ) : (
+            ""
+
+          )}</Box>
+          
             <IconButton size="large" color="inherit">
               <HomeIcon />
             </IconButton>
