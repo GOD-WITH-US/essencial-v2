@@ -17,6 +17,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import { UidContext } from"../../AppContext";
 import HomeIcon from "@mui/icons-material/Home";
 import CreateIcon from "@mui/icons-material/Create";
+import { useSelector } from "react-redux";
 
 
 const Search = styled("div")(({ theme }) => ({
@@ -100,7 +101,7 @@ export default function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profil</MenuItem>
+  <NavLink to="/profil"> <MenuItem onClick={handleMenuClose}>Profil</MenuItem></NavLink>
       <MenuItem onClick={handleMenuClose}>Déconnexion</MenuItem>
     </Menu>
   );
@@ -148,8 +149,8 @@ export default function PrimarySearchAppBar() {
       </MenuItem>
     </Menu>
   );
-  const uid = useContext(UidContext);
-  console.log(uid + " navbar");
+  const uid = useContext(UidContext); 
+  const userData = useSelector((state) => state.userReducer);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -179,12 +180,12 @@ export default function PrimarySearchAppBar() {
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <Box>{uid ? (
             <Box >
-              <Typography>Bonjour</Typography>
-              <Typography>{/* {uid} */}Jason</Typography>
+              <Typography>Bienvenue</Typography>
+              <Typography> {userData.pseudo} </Typography>
             </Box>
           ) : (
             ""
-
+ 
           )}</Box>
           
             <IconButton size="large" color="inherit">
