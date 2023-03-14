@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Avatar, Button, TextField } from "@mui/material";
 import { Grid, Box, Typography } from "@mui/material";
 import { uploadPictures, updateBio } from "../actions/user.action";
-import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
+import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 
 function Profil() {
   const dispatch = useDispatch();
@@ -28,13 +28,13 @@ function Profil() {
     event.preventDefault();
     const file = event.target.files[0];
     setImage(file);
-  
+
     // Créer un objet FormData pour envoyer les informations de l'image sélectionnée au serveur
     const formData = new FormData();
     formData.append("name", userData.pseudo);
     formData.append("userId", userData._id);
     formData.append("file", file);
-  
+
     // Appeler l'action "uploadPictures" qui envoie l'image au serveur pour la stocker
     dispatch(uploadPictures(formData, userData._id))
       .then(() => {
@@ -50,7 +50,7 @@ function Profil() {
     const userData = { bio };
     dispatch(updateBio(userData));
   };
- 
+
   // Sauvegarder la biographie de l'utilisateur dans le localStorage
   useEffect(() => {
     localStorage.setItem("bio", bio);
@@ -62,10 +62,14 @@ function Profil() {
     >
       {/* Afficher l'avatar de l'utilisateur */}
       <Avatar
-        src={userData.picture ? `${process.env.REACT_APP_API_URL}${userData.picture}?key=${avatarKey}` : null}
+        src={
+          userData.picture
+            ? `${process.env.REACT_APP_API_URL}${userData.picture}?key=${avatarKey}`
+            : null
+        }
         style={{ width: "12.5rem", height: "12.5rem", margin: "2rem" }}
       />
-  
+
       {/* Créer un champ pour sélectionner une nouvelle image */}
       <input
         accept=".jpg, .jpeg, .png"
@@ -77,19 +81,24 @@ function Profil() {
       />
       {/* Associer la sélection de fichier à un bouton */}
       <label htmlFor="avatar-input">
-      <Button variant="contained" component="span" startIcon={<AddAPhotoIcon />} sx={{ mb: 1 }}>
-             Ajouter une photo
-          </Button>
+        <Button
+          variant="contained"
+          component="span"
+          startIcon={<AddAPhotoIcon />}
+          sx={{ mb: 1 }}
+        >
+          Ajouter une photo
+        </Button>
       </label>
-      
+
       {/* Afficher le pseudo de l'utilisateur */}
       <Box style={{ fontSize: "1.5rem", fontWeight: "bold" }}>
         {userData.pseudo}
       </Box>
-      
+
       {/* Afficher la date de création du compte de l'utilisateur */}
-      <Box>Membre depuis {new Date(userData.createdAt).getFullYear()}</Box>
-      
+      <Box>Membre depuis le {new Date(userData.createdAt).toLocaleString('fr-FR', {day: 'numeric', year: 'numeric', month: 'long' })}</Box>
+
       {/* Afficher le nombre de personnes suivies et d'abonnés */}
       <Grid
         style={{
@@ -106,7 +115,7 @@ function Profil() {
           Abonnés: {userData.followers ? userData.followers.length : 0}
         </Box>
       </Grid>
-  
+
       {/* Afficher le champ de bio de l'utilisateur */}
       <Grid
         style={{
@@ -135,7 +144,6 @@ function Profil() {
       </Grid>
     </Grid>
   );
-  
 }
 
 export default Profil;
