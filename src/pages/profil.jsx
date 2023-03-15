@@ -3,7 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   Avatar,
   Button,
+  Box,
+  Grid,
   TextField,
+  Typography,
   Dialog,
   DialogTitle,
   DialogContent,
@@ -14,13 +17,16 @@ import {
   ListItemAvatar,
   ListItemText,
 } from "@mui/material";
-import { Grid, Box, Typography } from "@mui/material";
+import { NavLink } from "react-router-dom";
 import { uploadPictures, updateBio } from "../actions/user.action";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
+import FollowTheSignsIcon from "@mui/icons-material/FollowTheSigns";
+import CancelIcon from "@mui/icons-material/Cancel";
 
 function Profil() {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.userReducer);
+  const usersData = useSelector((state) => state.usersReducer);
 
   // Etat local pour stocker la biographie de l'utilisateur
   const [bio, setBio] = useState(localStorage.getItem("bio") || userData.bio);
@@ -157,10 +163,48 @@ function Profil() {
             <DialogContentText>
               Liste des personnes que vous suivez.
             </DialogContentText>
-            {<ul>
-              <li>{userData.following}</li>
-              </ul>
-            }
+            <Box
+              sx={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+                gridGap: 2,
+              }}
+            >
+              
+              {console.log( usersData.following) }
+              {Object.keys(usersData).map((key) => {
+    const user = usersData[key];
+    if (userData.following && userData.following.length > 0) {
+      for (let i = 0; i < userData.following.length; i++) {
+        if (user._id === userData.following[i]) {
+          return (
+            <Box
+              key={user._id}
+              sx={{ display: "flex", alignItems: "center", gap: 2 }}
+            >
+              <Avatar
+                src={`${process.env.REACT_APP_API_URL}${user.picture}`}
+                alt="user-pic"
+              />
+              <Box>
+                <ListItem>
+                  <Typography variant="h6">
+                    <NavLink to={`/profil/${user._id}`}>{user.pseudo}</NavLink>
+                  </Typography>
+                  <Typography variant="body2">
+                    <FollowTheSignsIcon />
+                    <CancelIcon />
+                  </Typography>
+                </ListItem>
+              </Box>
+            </Box>
+          );
+        }
+      }
+    }
+})}
+
+            </Box>
           </DialogContent>
           <DialogActions>
             <Button onClick={handleFollowingModalClose}>Fermer</Button>
@@ -176,10 +220,44 @@ function Profil() {
             <DialogContentText>
               Liste des personnes qui vous suivent.
             </DialogContentText>
-            {<ul>
-              <li>{userData.followers}</li>
-              </ul>
-            }
+            <ul>
+           {Object.keys(usersData).map((key) =>{
+  const user = usersData[key];
+  if (userData.following && userData.following.length) {
+    for (let i = 0; i < userData.following.length; i++) {
+      if (user._id === userData.followers[i]) {
+        return (
+          <Box
+            key={user._id}
+            sx={{ display: "flex", alignItems: "center", gap: 2 }}
+          >
+            <Avatar
+              src={`${process.env.REACT_APP_API_URL}${user.picture}`}
+              alt="user-pic"
+            />
+
+            <Box>
+              <ListItem>
+                <Typography variant="h6">
+                  <NavLink to={`/profil/${user._id}`}>
+                    {user.pseudo}
+                  </NavLink>
+                </Typography>
+                <Typography variant="body2">
+                  <FollowTheSignsIcon />
+                  <CancelIcon />
+                </Typography>
+              </ListItem>
+            </Box>
+          </Box>
+        );
+      }
+    }
+  }
+})}
+
+
+            </ul>
           </DialogContent>
           <DialogActions>
             <Button onClick={handleFollowersModalClose}>Fermer</Button>
