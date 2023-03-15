@@ -1,6 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Avatar, Button, TextField } from "@mui/material";
+import {
+  Avatar,
+  Button,
+  TextField,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+} from "@mui/material";
 import { Grid, Box, Typography } from "@mui/material";
 import { uploadPictures, updateBio } from "../actions/user.action";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
@@ -17,6 +30,11 @@ function Profil() {
 
   // Etat local pour stocker la clé unique qui actualise l'image de l'avatar de l'utilisateur
   const [avatarKey, setAvatarKey] = useState(Date.now());
+
+  // Etat local pour gérer l'ouverture et la fermeture de la modale "Suivi(e)"
+  const [openFollowingModal, setOpenFollowingModal] = useState(false);
+  // Etat local pour gérer l'ouverture et la fermeture de la modale "Mes Abonnés"
+  const [openFollowersModal, setOpenFollowersModal] = useState(false);
 
   // Gérer le changement de la biographie de l'utilisateur
   const handleBioChange = (event) => {
@@ -49,6 +67,21 @@ function Profil() {
   const handleBioUpdate = () => {
     const userData = { bio };
     dispatch(updateBio(userData));
+  };
+  // Gérer l'ouverture des modales
+  const handleFollowingModalOpen = () => {
+    setOpenFollowingModal(true);
+  };
+  const handleFollowersModalOpen = () => {
+    setOpenFollowersModal(true);
+  };
+
+  // Gérer la fermeture des modales
+  const handleFollowingModalClose = () => {
+    setOpenFollowingModal(false);
+  };
+  const handleFollowersModalClose = () => {
+    setOpenFollowersModal(false);
   };
 
   // Sauvegarder la biographie de l'utilisateur dans le localStorage
@@ -97,7 +130,14 @@ function Profil() {
       </Box>
 
       {/* Afficher la date de création du compte de l'utilisateur */}
-      <Box>Membre depuis le {new Date(userData.createdAt).toLocaleString('fr-FR', {day: 'numeric', year: 'numeric', month: 'long' })}</Box>
+      <Box>
+        Membre depuis le{" "}
+        {new Date(userData.createdAt).toLocaleString("fr-FR", {
+          day: "numeric",
+          year: "numeric",
+          month: "long",
+        })}
+      </Box>
 
       {/* Afficher le nombre de personnes suivies et d'abonnés */}
       <Grid
@@ -108,12 +148,43 @@ function Profil() {
           marginTop: "1rem",
         }}
       >
-        <Box style={{ fontWeight: "bold" }}>
+        <Button variant="outlined" onClick={handleFollowingModalOpen}>
           Suivi(e): {userData.following ? userData.following.length : 0}
-        </Box>
-        <Box style={{ fontWeight: "bold" }}>
-          Abonnés: {userData.followers ? userData.followers.length : 0}
-        </Box>
+        </Button>
+        <Dialog open={openFollowingModal} onClose={handleFollowingModalClose}>
+          <DialogTitle>Suivi(e)</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Liste des personnes que vous suivez.
+            </DialogContentText>
+            {<ul>
+              <li>{userData.following}</li>
+              </ul>
+            }
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleFollowingModalClose}>Fermer</Button>
+          </DialogActions>
+        </Dialog>
+
+        <Button variant="outlined" onClick={handleFollowersModalOpen}>
+          Mes Abonnés: {userData.followers ? userData.followers.length : 0}
+        </Button>
+        <Dialog open={openFollowersModal} onClose={handleFollowersModalClose}>
+          <DialogTitle>Mes Abonnés</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Liste des personnes qui vous suivent.
+            </DialogContentText>
+            {<ul>
+              <li>{userData.followers}</li>
+              </ul>
+            }
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleFollowersModalClose}>Fermer</Button>
+          </DialogActions>
+        </Dialog>
       </Grid>
 
       {/* Afficher le champ de bio de l'utilisateur */}
