@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
+import { uploadPictures, updateBio } from "../actions/user.action";
 import {
   Avatar,
   Button,
@@ -14,11 +16,7 @@ import {
   DialogActions,
   List,
   ListItem,
-  ListItemAvatar,
-  ListItemText,
 } from "@mui/material";
-import { NavLink } from "react-router-dom";
-import { uploadPictures, updateBio } from "../actions/user.action";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import FollowTheSignsIcon from "@mui/icons-material/FollowTheSigns";
 import CancelIcon from "@mui/icons-material/Cancel";
@@ -74,6 +72,7 @@ function Profil() {
     const userData = { bio };
     dispatch(updateBio(userData));
   };
+
   // Gérer l'ouverture des modales
   const handleFollowingModalOpen = () => {
     setOpenFollowingModal(true);
@@ -106,7 +105,7 @@ function Profil() {
             ? `${process.env.REACT_APP_API_URL}${userData.picture}?key=${avatarKey}`
             : null
         }
-        style={{ width: "12.5rem", height: "12.5rem", margin: "2rem" }}
+        style={{ width: "12rem", height: "12rem", margin: "1rem" }}
       />
 
       {/* Créer un champ pour sélectionner une nouvelle image */}
@@ -125,9 +124,7 @@ function Profil() {
           component="span"
           startIcon={<AddAPhotoIcon />}
           sx={{ mb: 1 }}
-        >
-          Ajouter une photo
-        </Button>
+        ></Button>
       </label>
 
       {/* Afficher le pseudo de l'utilisateur */}
@@ -154,9 +151,11 @@ function Profil() {
           marginTop: "1rem",
         }}
       >
+        {/* Bouton Suivi*/}
         <Button variant="outlined" onClick={handleFollowingModalOpen}>
           Suivi(e): {userData.following ? userData.following.length : 0}
         </Button>
+        {/* Modale avec liste des utilisateur suivi*/}
         <Dialog open={openFollowingModal} onClose={handleFollowingModalClose}>
           <DialogTitle>Suivi(e)</DialogTitle>
           <DialogContent>
@@ -170,94 +169,91 @@ function Profil() {
                 gridGap: 2,
               }}
             >
-              
-              {console.log( usersData.following) }
               {Object.keys(usersData).map((key) => {
-    const user = usersData[key];
-    if (userData.following && userData.following.length > 0) {
-      for (let i = 0; i < userData.following.length; i++) {
-        if (user._id === userData.following[i]) {
-          return (
-            <Box
-              key={user._id}
-              sx={{ display: "flex", alignItems: "center", gap: 2 }}
-            >
-              <Avatar
-                src={`${process.env.REACT_APP_API_URL}${user.picture}`}
-                alt="user-pic"
-              />
-              <Box>
-                <ListItem>
-                  <Typography variant="h6">
-                    <NavLink to={`/profil/${user._id}`}>{user.pseudo}</NavLink>
-                  </Typography>
-                  <Typography variant="body2">
-                    <FollowTheSignsIcon />
-                    <CancelIcon />
-                  </Typography>
-                </ListItem>
-              </Box>
-            </Box>
-          );
-        }
-      }
-    }
-})}
-
+                const user = usersData[key];
+                if (userData.following && userData.following.length > 0) {
+                  for (let i = 0; i < userData.following.length; i++) {
+                    if (user._id === userData.following[i]) {
+                      return (
+                        <Box
+                          key={user._id}
+                          sx={{ display: "flex", alignItems: "center", gap: 2 }}
+                        >
+                          <Avatar
+                            src={`${process.env.REACT_APP_API_URL}${user.picture}`}
+                            alt="user-pic"
+                          />
+                          <List>
+                            <ListItem>
+                              <Typography variant="h6">
+                                <NavLink to={`/profil/${user._id}`}>
+                                  {user.pseudo}
+                                </NavLink>
+                              </Typography>
+                              <Typography variant="body2">
+                                <FollowTheSignsIcon />
+                                <CancelIcon />
+                              </Typography>
+                            </ListItem>
+                          </List>
+                        </Box>
+                      );
+                    }
+                  }
+                }
+              })}
             </Box>
           </DialogContent>
           <DialogActions>
             <Button onClick={handleFollowingModalClose}>Fermer</Button>
           </DialogActions>
         </Dialog>
-
+        {/* Bouton Mes abonnés*/}
         <Button variant="outlined" onClick={handleFollowersModalOpen}>
           Mes Abonnés: {userData.followers ? userData.followers.length : 0}
         </Button>
+        {/* Modale avec liste des utilisateur abonnés a mon compte*/}
         <Dialog open={openFollowersModal} onClose={handleFollowersModalClose}>
           <DialogTitle>Mes Abonnés</DialogTitle>
           <DialogContent>
             <DialogContentText>
               Liste des personnes qui vous suivent.
             </DialogContentText>
-            <ul>
-           {Object.keys(usersData).map((key) =>{
-  const user = usersData[key];
-  if (userData.following && userData.following.length) {
-    for (let i = 0; i < userData.following.length; i++) {
-      if (user._id === userData.followers[i]) {
-        return (
-          <Box
-            key={user._id}
-            sx={{ display: "flex", alignItems: "center", gap: 2 }}
-          >
-            <Avatar
-              src={`${process.env.REACT_APP_API_URL}${user.picture}`}
-              alt="user-pic"
-            />
 
-            <Box>
-              <ListItem>
-                <Typography variant="h6">
-                  <NavLink to={`/profil/${user._id}`}>
-                    {user.pseudo}
-                  </NavLink>
-                </Typography>
-                <Typography variant="body2">
-                  <FollowTheSignsIcon />
-                  <CancelIcon />
-                </Typography>
-              </ListItem>
-            </Box>
-          </Box>
-        );
-      }
-    }
-  }
-})}
+            {Object.keys(usersData).map((key) => {
+              const user = usersData[key];
+              if (userData.following && userData.following.length) {
+                for (let i = 0; i < userData.following.length; i++) {
+                  if (user._id === userData.followers[i]) {
+                    return (
+                      <Box
+                        key={user._id}
+                        sx={{ display: "flex", alignItems: "center", gap: 2 }}
+                      >
+                        <Avatar
+                          src={`${process.env.REACT_APP_API_URL}${user.picture}`}
+                          alt="user-pic"
+                        />
 
-
-            </ul>
+                        <Box>
+                          <ListItem>
+                            <Typography variant="h6">
+                              <NavLink to={`/profil/${user._id}`}>
+                                {user.pseudo}
+                              </NavLink>
+                            </Typography>
+                            <Typography variant="body2">
+                              <FollowTheSignsIcon />
+                              <CancelIcon />
+                            </Typography>
+                          </ListItem>
+                        </Box>
+                      </Box>
+                    );
+                  }
+                }
+              }
+            })}
           </DialogContent>
           <DialogActions>
             <Button onClick={handleFollowersModalClose}>Fermer</Button>
