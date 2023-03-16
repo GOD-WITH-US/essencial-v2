@@ -8,7 +8,7 @@ import React from 'react';
 import { Grid } from "@mui/material";
 
 
-const HomeConnexion = () => {
+const homeConnexion = () => {
     return (
         <Grid className="App">
         <header className="App-header">
@@ -26,4 +26,4 @@ const HomeConnexion = () => {
     );
 };
 
-export default HomeConnexion;
+export default homeConnexion;

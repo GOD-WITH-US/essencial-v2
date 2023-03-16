@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { uploadPictures, updateBio } from "../actions/user.action";
+import { uploadPictures, updateBio } from "../../actions/user.action";
+import FollowHandler from "./FollowHandler";
 import {
   Avatar,
   Button,
@@ -18,38 +19,30 @@ import {
   ListItem,
 } from "@mui/material";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
-import FollowTheSignsIcon from "@mui/icons-material/FollowTheSigns";
-import CancelIcon from "@mui/icons-material/Cancel";
 
 function Profil() {
-  const dispatch = useDispatch();
-  const userData = useSelector((state) => state.userReducer);
-  const usersData = useSelector((state) => state.usersReducer);
+  // Importer les fonctions nécessaires à partir de Redux
+  const dispatch = useDispatch(); // Permet d'appeler les actions pour mettre à jour les données dans le store Redux
+  const userData = useSelector((state) => state.userReducer); // Récupère les données de l'utilisateur actuel depuis le store Redux
+  const usersData = useSelector((state) => state.usersReducer); // Récupère les données des autres utilisateurs depuis le store Redux
 
-  // Etat local pour stocker la biographie de l'utilisateur
-  const [bio, setBio] = useState(localStorage.getItem("bio") || userData.bio);
+  // Définir les états locaux pour stocker les données du composant
+  const [bio, setBio] = useState(localStorage.getItem("bio") || userData.bio); // Stocke la biographie de l'utilisateur actuel
+  const [image, setImage] = useState(null); // Stocke l'image sélectionnée par l'utilisateur pour son avatar
+  const [avatarKey, setAvatarKey] = useState(Date.now()); // Stocke une clé unique pour actualiser l'image de l'avatar de l'utilisateur
+  const [openFollowingModal, setOpenFollowingModal] = useState(false); // Gère l'ouverture et la fermeture de la modale "Suivi(e)"
+  const [openFollowersModal, setOpenFollowersModal] = useState(false); // Gère l'ouverture et la fermeture de la modale "Mes Abonnés"
 
-  // Etat local pour stocker l'image sélectionnée par l'utilisateur
-  const [image, setImage] = useState(null);
-
-  // Etat local pour stocker la clé unique qui actualise l'image de l'avatar de l'utilisateur
-  const [avatarKey, setAvatarKey] = useState(Date.now());
-
-  // Etat local pour gérer l'ouverture et la fermeture de la modale "Suivi(e)"
-  const [openFollowingModal, setOpenFollowingModal] = useState(false);
-  // Etat local pour gérer l'ouverture et la fermeture de la modale "Mes Abonnés"
-  const [openFollowersModal, setOpenFollowersModal] = useState(false);
-
-  // Gérer le changement de la biographie de l'utilisateur
+  // Fonction pour gérer le changement de la biographie de l'utilisateur
   const handleBioChange = (event) => {
     setBio(event.target.value);
   };
 
-  // Gérer le changement de l'image de l'utilisateur
+  // Fonction pour gérer le changement de l'image de l'utilisateur
   const handlePictureChange = (event) => {
     event.preventDefault();
-    const file = event.target.files[0];
-    setImage(file);
+    const file = event.target.files[0]; // Récupère le fichier sélectionné par l'utilisateur
+    setImage(file); // Met à jour l'état local "image" avec le fichier sélectionné
 
     // Créer un objet FormData pour envoyer les informations de l'image sélectionnée au serveur
     const formData = new FormData();
@@ -67,21 +60,19 @@ function Profil() {
       .catch((error) => console.log(error));
   };
 
-  // Gérer la mise à jour des informations de l'utilisateur
+  // Fonction pour gérer la mise à jour des informations de l'utilisateur
   const handleBioUpdate = () => {
-    const userData = { bio };
-    dispatch(updateBio(userData));
+    const userData = { bio }; // Stocke la nouvelle biographie de l'utilisateur dans un objet userData
+    dispatch(updateBio(userData)); // Appelle l'action "updateBio" pour mettre à jour la biographie de l'utilisateur dans le store Redux
   };
 
-  // Gérer l'ouverture des modales
+  // Fonctions pour gérer l'ouverture et la fermeture des modales
   const handleFollowingModalOpen = () => {
     setOpenFollowingModal(true);
   };
   const handleFollowersModalOpen = () => {
     setOpenFollowersModal(true);
   };
-
-  // Gérer la fermeture des modales
   const handleFollowingModalClose = () => {
     setOpenFollowingModal(false);
   };
@@ -89,7 +80,7 @@ function Profil() {
     setOpenFollowersModal(false);
   };
 
-  // Sauvegarder la biographie de l'utilisateur dans le localStorage
+  // Utilise useEffect pour sauvegarder la biographie de l'utilisateur dans le localStorage à chaque fois que le composant change
   useEffect(() => {
     localStorage.setItem("bio", bio);
   }, [bio]);
@@ -100,6 +91,7 @@ function Profil() {
     >
       {/* Afficher l'avatar de l'utilisateur */}
       <Avatar
+        variant="rounded"
         src={
           userData.picture
             ? `${process.env.REACT_APP_API_URL}${userData.picture}?key=${avatarKey}`
@@ -155,7 +147,7 @@ function Profil() {
         <Button variant="outlined" onClick={handleFollowingModalOpen}>
           Suivi(e): {userData.following ? userData.following.length : 0}
         </Button>
-        {/* Modale avec liste des utilisateur suivi*/}
+        {/* Modale avec liste des utilisateurs suivis */}
         <Dialog open={openFollowingModal} onClose={handleFollowingModalClose}>
           <DialogTitle>Suivi(e)</DialogTitle>
           <DialogContent>
@@ -190,10 +182,8 @@ function Profil() {
                                   {user.pseudo}
                                 </NavLink>
                               </Typography>
-                              <Typography variant="body2">
-                                <FollowTheSignsIcon />
-                                <CancelIcon />
-                              </Typography>
+
+                              <FollowHandler idToFollow={user._id} />
                             </ListItem>
                           </List>
                         </Box>
@@ -204,6 +194,7 @@ function Profil() {
               })}
             </Box>
           </DialogContent>
+
           <DialogActions>
             <Button onClick={handleFollowingModalClose}>Fermer</Button>
           </DialogActions>
@@ -222,8 +213,8 @@ function Profil() {
 
             {Object.keys(usersData).map((key) => {
               const user = usersData[key];
-              if (userData.following && userData.following.length) {
-                for (let i = 0; i < userData.following.length; i++) {
+              if (userData.followers && userData.followers.length) {
+                for (let i = 0; i < userData.followers.length; i++) {
                   if (user._id === userData.followers[i]) {
                     return (
                       <Box
@@ -234,20 +225,15 @@ function Profil() {
                           src={`${process.env.REACT_APP_API_URL}${user.picture}`}
                           alt="user-pic"
                         />
-
-                        <Box>
+                        <List>
                           <ListItem>
                             <Typography variant="h6">
                               <NavLink to={`/profil/${user._id}`}>
                                 {user.pseudo}
                               </NavLink>
                             </Typography>
-                            <Typography variant="body2">
-                              <FollowTheSignsIcon />
-                              <CancelIcon />
-                            </Typography>
                           </ListItem>
-                        </Box>
+                        </List>
                       </Box>
                     );
                   }

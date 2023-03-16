@@ -50,6 +50,7 @@ export const followUser = (followerId, idToFollow) => {
       method: "patch",
       url: `${process.env.REACT_APP_API_URL}api/user/follow/` + followerId,
       data: { idToFollow },
+    
     })
       .then((res) => {
         dispatch({ type: FOLLOW_USER, payload: { idToFollow } });
@@ -71,3 +72,4 @@ export const unfollowUser = (followerId, idToUnfollow) => {
       .catch((err) => console.log(err));
   };
 };
+
