@@ -18,100 +18,99 @@ const Sidebar = () => {
     <Grid
       item
       textAlign="center"
-      pt={"10vh"}
-      height="92vh"
-      width="100%"
-      style={{ background: "#a8c6b4" }}
+      sx={{
+        position:"fixed",
+        pt: 20,
+      }}
     >
-     
-        <NavLink style={{ color: "#004d40" }} to="/tutoriel">
-          <ListItem  disablePadding>
-            <ListItemButton disableGutters >
-              <IconButton size="large" color="inherit" pl={0}>
-                <HandymanIcon />
-              </IconButton>
-              <ListItemText
-                sx={{
-                  display: {
-                    xs: "none",
-                    md: "block",
-                    lg: "block",
-                    xl: "block",
-                  },
-                }}
-                primary="Tutoriel"
-              />
-            </ListItemButton>
-          </ListItem>
-        </NavLink>
-        <br />
-        <NavLink style={{ color: "#004d40" }} to="/amis">
-          <ListItem disablePadding>
-            <ListItemButton disableGutters >
-              <IconButton size="large" color="inherit">
-                <PeopleAltIcon />
-              </IconButton>
-              <ListItemText
-                sx={{
-                  display: {
-                    xs: "none",
-                    md: "block",
-                    lg: "block",
-                    xl: "block",
-                  },
-                }}
-                primary="Amis"
-              />
-            </ListItemButton>
-          </ListItem>
-        </NavLink>
-        <br />
-        <NavLink style={{ color: "#004d40" }} to="/ecovillage">
-          <ListItem disablePadding>
-            <ListItemButton disableGutters >
-              <IconButton size="large" color="inherit">
-                <HolidayVillageIcon />
-              </IconButton>
-              <ListItemText
-                sx={{
-                  display: {
-                    xs: "none",
-                    md: "block",
-                    lg: "block",
-                    xl: "block",
-                  },
-                }}
-                primary="Ecovillage"
-              />
-            </ListItemButton>
-          </ListItem>
-        </NavLink>
-        <br />
-        <NavLink style={{ color: "#004d40" }} to="/boutique">
-          <ListItem disablePadding>
-            <ListItemButton disableGutters >
-              <IconButton size="large" color="inherit">
-                <StorefrontIcon />
-              </IconButton>
-
-              <ListItemText
-                sx={{
-                  display: {
-                    xs: "none",
-                    md: "block",
-                    lg: "block",
-                    xl: "block",
-                  },
-                }}
-                primary="Marketplace"
-              />
-            </ListItemButton>
-          </ListItem>
-        </NavLink>
-        <br />
-        <NavLink style={{ color: "#004d40" }} to="/membres">
+      <NavLink style={{ color: "#004d40" }} to="/tutoriel">
         <ListItem disablePadding>
-          <ListItemButton disableGutters >
+          <ListItemButton disableGutters>
+            <IconButton size="large" color="inherit">
+              <HandymanIcon />
+            </IconButton>
+            <ListItemText
+              sx={{
+                display: {
+                  xs: "none",
+                  md: "block",
+                  lg: "block",
+                  xl: "block",
+                },
+              }}
+              primary="Tutoriel"
+            />
+          </ListItemButton>
+        </ListItem>
+      </NavLink>
+      <br />
+      <NavLink style={{ color: "#004d40" }} to="/amis">
+        <ListItem disablePadding>
+          <ListItemButton disableGutters>
+            <IconButton size="large" color="inherit">
+              <PeopleAltIcon />
+            </IconButton>
+            <ListItemText
+              sx={{
+                display: {
+                  xs: "none",
+                  md: "block",
+                  lg: "block",
+                  xl: "block",
+                },
+              }}
+              primary="Amis"
+            />
+          </ListItemButton>
+        </ListItem>
+      </NavLink>
+      <br />
+      <NavLink style={{ color: "#004d40" }} to="/ecovillage">
+        <ListItem disablePadding>
+          <ListItemButton disableGutters>
+            <IconButton size="large" color="inherit">
+              <HolidayVillageIcon />
+            </IconButton>
+            <ListItemText
+              sx={{
+                display: {
+                  xs: "none",
+                  md: "block",
+                  lg: "block",
+                  xl: "block",
+                },
+              }}
+              primary="Ecovillage"
+            />
+          </ListItemButton>
+        </ListItem>
+      </NavLink>
+      <br />
+      <NavLink style={{ color: "#004d40" }} to="/boutique">
+        <ListItem disablePadding>
+          <ListItemButton disableGutters>
+            <IconButton size="large" color="inherit">
+              <StorefrontIcon />
+            </IconButton>
+
+            <ListItemText
+              sx={{
+                display: {
+                  xs: "none",
+                  md: "block",
+                  lg: "block",
+                  xl: "block",
+                },
+              }}
+              primary="Marketplace"
+            />
+          </ListItemButton>
+        </ListItem>
+      </NavLink>
+      <br />
+      <NavLink style={{ color: "#004d40" }} to="/membres">
+        <ListItem disablePadding>
+          <ListItemButton disableGutters>
             <IconButton size="large" color="inherit">
               <GroupsIcon />
             </IconButton>
@@ -123,8 +122,7 @@ const Sidebar = () => {
             />
           </ListItemButton>
         </ListItem>
-        </NavLink>
-    
+      </NavLink>
     </Grid>
   );
 };

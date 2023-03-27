@@ -1,6 +1,6 @@
 import "../../../styles/navbar.scss";
 
-import React, { useContext } from 'react';
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
@@ -14,11 +14,10 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import { UidContext } from"../../AppContext";
+import { UidContext } from "../../AppContext";
 import HomeIcon from "@mui/icons-material/Home";
 import CreateIcon from "@mui/icons-material/Create";
 import { useSelector } from "react-redux";
-
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -101,7 +100,10 @@ export default function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-  <NavLink to="/profil"> <MenuItem onClick={handleMenuClose}>Profil</MenuItem></NavLink>
+      <NavLink to="/profil">
+        {" "}
+        <MenuItem onClick={handleMenuClose}>Profil</MenuItem>
+      </NavLink>
       <MenuItem onClick={handleMenuClose}>Déconnexion</MenuItem>
     </Menu>
   );
@@ -149,51 +151,39 @@ export default function PrimarySearchAppBar() {
       </MenuItem>
     </Menu>
   );
-  const uid = useContext(UidContext); 
+  const uid = useContext(UidContext);
   const userData = useSelector((state) => state.userReducer);
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" style={{ background: "#72a086" }}>
+    <Box sx={{ flexGrow: 1, mb: 7 }}>
+      <AppBar
+        position="fixed"
+        style={{ background: "#729883", boxShadow: "none" }}
+      >
         <Toolbar>
-          <NavLink style={{ textDecoration: "none" }}  to="/home">
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ display: { xs: "none", sm: "block" } }}
-          >
-            <p className="logo">Essencial</p>
-          </Typography>
+          <NavLink style={{ textDecoration: "none" }} to="/home">
+            <Typography mr={1} variant="h6" noWrap component="div">
+              <p className="logo">Essencial</p>
+            </Typography>
           </NavLink>
-          
+
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="Rechercher…"
+              placeholder="Recherche…"
               inputProps={{ "aria-label": "search" }}
             />
           </Search>
-          <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <Box>{uid ? (
-            <Box >
-              <Typography>Bienvenue</Typography>
-              <Typography> {userData.pseudo} </Typography>
-            </Box>
-          ) : (
-            ""
- 
-          )}</Box>
-          
-            <IconButton size="large" color="inherit">
-              <HomeIcon />
-            </IconButton>
-            <IconButton size="large" color="inherit">
-              <CreateIcon />
-            </IconButton>
+
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+              flexDirection: "row-reverse",
+            }}
+          >
             <IconButton
               size="large"
               edge="end"
@@ -205,8 +195,27 @@ export default function PrimarySearchAppBar() {
             >
               <AccountCircle />
             </IconButton>
+
+            <IconButton size="large" color="inherit">
+              <CreateIcon />
+            </IconButton>
+
+            <IconButton size="large" color="inherit">
+              <HomeIcon />
+            </IconButton>
+            <Box sx={{ mr: 2 }}>
+              {uid ? (
+                <Box>
+                  <Typography>Bienvenue</Typography>
+                  <Typography> {userData.pseudo} </Typography>
+                </Box>
+              ) : (
+                ""
+              )}
+            </Box>
           </Box>
-          <Box sx={{ display: { xs: "flex", md: "none" } }}>
+
+          <Box sx={{ display: { xs: "flex", md: "none", marginLeft: "auto" } }}>
             <IconButton
               size="large"
               aria-label="show more"

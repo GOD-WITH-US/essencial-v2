@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
 // import Swiper core and required modules
 
-import RecipeReviewCard from "./card";
+import CarousselCard from "./CarousselCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 // import required modules
 
@@ -11,76 +11,81 @@ import "swiper/scss/navigation";
 import "swiper/scss/pagination";
 import "swiper/scss/scrollbar";
 
-
 const Caroussel = () => {
   return (
     <Grid
       item
-      width="100%"
-      height="auto"
-      py={1}
+      sx={{ maxWidth: "100%", height: "20em" }}
+      py={2}
       style={{ background: "" }}
     >
       <Swiper
         // install Swiper modules
         slidesPerView={1}
         spaceBetween={10}
-  
+        loop
         breakpoints={{
           320: {
-            slidesPerView: 2,
+            slidesPerView: 1,
             spaceBetween: 10,
           },
           480: {
-            slidesPerView: 3,
+            slidesPerView: 1,
             spaceBetween: 10,
           },
 
           600: {
-            slidesPerView: 4,
+            slidesPerView: 1,
             spaceBetween: 20,
           },
           768: {
-            slidesPerView: 4,
+            slidesPerView: 2,
             spaceBetween: 40,
           },
           1024: {
-            slidesPerView: 5,
+            slidesPerView: 3,
+            spaceBetween: 50,
+          },
+          1440: {
+            slidesPerView: 3,
+            spaceBetween: 50,
+          },
+          2560: {
+            slidesPerView: 4,
             spaceBetween: 50,
           },
         }}
         className="mySwiper"
       >
         <SwiperSlide>
-          <RecipeReviewCard />
+          <CarousselCard />
         </SwiperSlide>
 
         <SwiperSlide>
-          <RecipeReviewCard />
+          <CarousselCard />
         </SwiperSlide>
 
         <SwiperSlide>
-          <RecipeReviewCard />
+          <CarousselCard />
         </SwiperSlide>
 
         <SwiperSlide>
-          <RecipeReviewCard />
+          <CarousselCard />
         </SwiperSlide>
 
         <SwiperSlide>
-          <RecipeReviewCard />
+          <CarousselCard />
         </SwiperSlide>
 
         <SwiperSlide>
-          <RecipeReviewCard />
+          <CarousselCard />
+        </SwiperSlide>
+        <SwiperSlide>
+          <CarousselCard />
         </SwiperSlide>
 
         <SwiperSlide>
-          <RecipeReviewCard />
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <RecipeReviewCard />
+          <CarousselCard />
         </SwiperSlide>
       </Swiper>
     </Grid>

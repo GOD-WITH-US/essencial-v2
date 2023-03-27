@@ -7,6 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import martin from "../../../media/Martin.jpg";
+
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -18,7 +19,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function RecipeReviewCard() {
+export default function CarousselCard() {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -26,9 +27,9 @@ export default function RecipeReviewCard() {
   };
 
   return (
-    <Card sx={{ backgroundColor:"#a8c6b4", maxWidth: 100, mx: "auto" }}>
-      <CardContent sx={{ p:0, '&:last-child': { pb: 0 }}} >
-        <CardMedia component="img" image={martin} alt="martin" height="80" />
+    <Card sx={{ backgroundColor:"#a8c6b4", width:"18em",height:"18em", mx: "auto" }}>
+      <CardMedia component="img" image={martin} alt="martin" height="70%" />
+      <CardContent sx={{ p:0, '&:last-child': { pb: 0 }, height: '100%' }}>
         <Typography
           sx={{ fontSize: 14, pl: 0.6 }}
           color="text.primary"

@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux';
 import "./app.scss";
 import { getUser } from './actions/user.action';
 
+
 function App() {
   const [uid, setUid] = useState(null);
   const dispatch = useDispatch();
