@@ -131,12 +131,16 @@ export default function PrimarySearchAppBar() {
         </IconButton>
         <p>Acceuil</p>
       </MenuItem>
-      <MenuItem>
-        <IconButton size="large" color="inherit">
-          <CreateIcon />
-        </IconButton>
-        <p>Nouveau post</p>
-      </MenuItem>
+
+      <NavLink to="/post">
+        <MenuItem>
+          <IconButton size="large" color="inherit">
+            <CreateIcon />
+          </IconButton>
+          <p>Nouveau post</p>
+        </MenuItem>
+      </NavLink>
+
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           size="large"
@@ -193,15 +197,17 @@ export default function PrimarySearchAppBar() {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <AccountCircle />
+              <AccountCircle sx={{ color: "#FFFFFF" }} />
             </IconButton>
 
-            <IconButton size="large" color="inherit">
-              <CreateIcon />
-            </IconButton>
+            <NavLink to="/post">
+              <IconButton size="large" color="inherit">
+                <CreateIcon sx={{ color: "#FFFFFF" }} />
+              </IconButton>
+            </NavLink>
 
             <IconButton size="large" color="inherit">
-              <HomeIcon />
+              <HomeIcon sx={{ color: "#FFFFFF" }} />
             </IconButton>
             <Box sx={{ mr: 2 }}>
               {uid ? (

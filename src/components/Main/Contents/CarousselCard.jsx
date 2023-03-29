@@ -27,7 +27,7 @@ export default function CarousselCard() {
   };
 
   return (
-    <Card sx={{ backgroundColor:"#a8c6b4", width:"18em",height:"18em", mx: "auto" }}>
+    <Card sx={{ backgroundColor:"#a8c6b4", width:"15em",height:"18em", mx: "auto" }}>
       <CardMedia component="img" image={martin} alt="martin" height="70%" />
       <CardContent sx={{ p:0, '&:last-child': { pb: 0 }, height: '100%' }}>
         <Typography

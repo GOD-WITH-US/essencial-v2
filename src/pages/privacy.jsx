@@ -7,12 +7,16 @@ import {
   Typography,
   CardMedia,
 } from "@mui/material";
+import Header from "../components/Header/header";
 import brancheok from "../media/brancheok.jpg";
 export default function Privacy() {
   return (
     <Grid item sx={{ height: "100%", px: 5, pt: 1 }}>
+      <Grid sx={{ p: 3 }}>
+        <Header />
+      </Grid>
       <img height={150} src={brancheok} alt="" />
-      <Typography component={'span'}>
+      <Typography component={"span"}>
         <p>
           Nous informons les visiteurs du site Web de notre politiques en
           matière de collecte, d'utilisation et de divulgation des informations
@@ -31,11 +35,7 @@ export default function Privacy() {
           <br />
           Les termes utilisés dans la présente politique de confidentialité ont
           la même signification que dans nos conditions générales, qui sont
-          accessibles à l'adresse{" "}
-          
-            <a href="#">www.essencial.eco</a>
-          
-          .
+          accessibles à l'adresse <a href="#">www.essencial.eco</a>.
         </p>
       </Typography>
     </Grid>

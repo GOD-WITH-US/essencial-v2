@@ -16,105 +16,89 @@ export default function PostCard({ post }) {
   const postsData = useSelector((state) => state.postReducer);
   /* je récupére les infos de mon user connecté  */
   const userData = useSelector((state) => state.userReducer);
+  
+  const [truncatedText, setTruncatedText] = useState("");
+
+  useEffect(() => {
+    if (post.text && post.text.length > 400) {
+      setTruncatedText(post.text.slice(0, 400) + "...");
+    } else {
+      setTruncatedText(post.text);
+    }
+  }, [post.text]);
 
   return (
-    <Card sx={{ m: 1}}>
-      <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
-        <CardMedia
-          component="img"
-          src={`${process.env.REACT_APP_API_URL}${post.picture}`}
-          alt="post-pic"
-          sx={{
-            p: 1,
-            flex: 1,
-            margin: "1rem",
-            alignSelf: "center",
-            width: "100%",
-            maxWidth:"25em",
-            height: "20rem",
-            objectFit: "contain",
-          }}
-        />
-
-        <CardContent sx={{ flex: 2 }}>
-          <Grid container mb={2} spacing={1} alignItems="center">
-            <Grid item>
-              <img
-                src={
-                  !isEmpty(usersData[0]) &&
-                  usersData
-                    .map((user) => {
-                      if (user._id === post.posterId)
-                        return `${process.env.REACT_APP_API_URL}${user.picture}`;
-                      else return null;
-                    })
-                    .join("")
-                }
-                alt="avatar"
-                width={48}
-                height={48}
-                style={{ borderRadius: "50%" }}
-              />
+    <Card sx={{ m: 1 }}>
+      <Grid container>
+        <Grid item xs={12} md={6}>
+          <CardMedia
+            component="img"
+            src={`${process.env.REACT_APP_API_URL}${post.picture}`}
+            alt="post-pic"
+            sx={{
+              mr: "1rem",
+              mt: "1rem",
+              width: "100%",
+              height: "20rem",
+              objectFit: "contain",
+            }}
+          />
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <CardContent sx={{ height: "100%" }}>
+            <Grid container justifyContent="flex-end" mb={2}>
+              <Grid item>
+                <Button variant="contained" sx={{ backgroundColor: "#729883" }}>
+                  {post.category}
+                </Button>
+              </Grid>
             </Grid>
-            <Grid item>
-              <Typography variant="body2" color="text.primary">
-                {!isEmpty(usersData[0]) &&
-                  usersData
-                    .map((user) => {
-                      if (user._id === post.posterId) return user.pseudo;
-                      else return null;
-                    })
-                    .join("")}
-              </Typography>
-              <Typography variant="caption" color="text.secondary">
-                {new Date(post.createdAt).toLocaleDateString("fr-FR")}
-              </Typography>
-            </Grid>
-          </Grid>
 
-          <Stack
-            direction="column"
-            spacing={3}
-            sx={{ justifyContent: "flex-end", height: "100%" }}
-          >
-            <Typography variant="h7" component="div">
-              {post.category}
-            </Typography>
-            <Typography variant="h7" component="div">
-              {post.title}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {post.message}
-            </Typography>
-            <Stack
-              direction="row"
-              spacing={2}
-              alignItems="center"
-              sx={{ justifyContent: "space-between", height: "100%" }}
-            >
-              <Stack direction="row" spacing={1} alignItems="center">
-                <IconButton>
-                  <CommentIcon />
-                </IconButton>
-                <Typography variant="caption" color="text.secondary">
-                  {post.comments.length}
+            <Grid container direction="column" spacing={3}>
+              <Grid item>
+                <Typography variant="h7" component="div">
+                  {post.title}
                 </Typography>
-              </Stack>
-              <Stack direction="row" spacing={1} alignItems="center">
-                <IconButton>
-                  <FavoriteIcon />
-                </IconButton>
-                <Typography variant="caption" color="text.secondary">
-                  {post.likers.length}
+              </Grid>
+              <Grid item>
+                <Typography variant="body2" color="text.secondary">
+                  {truncatedText}
                 </Typography>
-              </Stack>
-              <Stack direction="row" spacing={1} alignItems="center">
-                <Button sx={{ alignSelf: "flex-end" }}>Lire la suite</Button>
-              </Stack>
-            </Stack>
-          </Stack>
-        </CardContent>
-      </Stack>
+              </Grid>
+              <Grid item>
+                <Stack
+                  direction="row"
+                  spacing={2}
+                  alignItems="center"
+                  sx={{ justifyContent: "space-between", marginTop: 20 }}
+                >
+                  <Stack direction="row" spacing={1} alignItems="center">
+                    <IconButton>
+                      <CommentIcon />
+                    </IconButton>
+                    <Typography variant="caption" color="text.secondary">
+                      {post.comments.length}
+                    </Typography>
+                  </Stack>
+                  <Stack direction="row" spacing={1} alignItems="center">
+                    <IconButton>
+                      <FavoriteIcon />
+                    </IconButton>
+                    <Typography variant="caption" color="text.secondary">
+                      {post.likers.length}
+                    </Typography>
+                  </Stack>
+                  <Stack direction="row" spacing={1} alignItems="center">
+                    <Button sx={{ alignSelf: "flex-end" }}>
+                      Lire la suite
+                    </Button>
+                  </Stack>
+                </Stack>
+              </Grid>
+            </Grid>
+          </CardContent>
+        </Grid>
+      </Grid>
     </Card>
   );
 }

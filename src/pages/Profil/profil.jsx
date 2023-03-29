@@ -18,6 +18,7 @@ import {
   List,
   ListItem,
 } from "@mui/material";
+import Header from "../../components/Header/header";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 
 function Profil() {
@@ -87,8 +88,11 @@ function Profil() {
 
   return (
     <Grid
-      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+      sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
+      <Grid sx={{ p: 3 }}>
+        <Header />
+      </Grid>
       {/* Afficher l'avatar de l'utilisateur */}
       <Avatar
         variant="rounded"

@@ -1,11 +1,6 @@
 //Import mui
-import {
-  Avatar,
-  Stack,
-  Grid,
-  CardContent,
-  Typography,
-} from "@mui/material";
+import { Avatar, Stack, Grid, CardContent, Typography } from "@mui/material";
+import Header from "../components/Header/header";
 
 // data, styles et utilitaires
 import manu from "../media/manu.jpeg";
@@ -16,9 +11,12 @@ import matt from "../media/matt.jpeg";
 const About = () => {
   return (
     <Grid item sx={{ height: "100%" }}>
-         <Grid>
+      <Grid sx={{p:3}}>
+        <Header />
+      </Grid>
+      <Grid>
         <Typography variant="h6" textAlign="center" ml={10} m={2}>
-  L'équipe Essencial
+          L'équipe Essencial
         </Typography>
       </Grid>
       <Stack
