@@ -1,4 +1,4 @@
-import { Grid, Box, List, ListItem } from "@mui/material";
+import { Grid, Box } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useState, useEffect } from "react";
 import { getPosts } from "../../../actions/post.action";

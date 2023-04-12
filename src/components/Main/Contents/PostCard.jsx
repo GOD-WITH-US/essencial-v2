@@ -1,31 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Grid, Stack, Button, IconButton } from "@mui/material";
-import CommentIcon from "@mui/icons-material/Comment";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+import { Comment } from "@mui/icons-material";
 import { useSelector } from "react-redux";
-import { isEmpty } from "../../Utils";
-import postReducer from "../../../reducers/post.reducer";
+import PostLikeButton from "../../Buttons/PostLikeButton";
 
 export default function PostCard({ post }) {
-  /* je récupére mes posts */
+  /* je récupére mes users */
   const usersData = useSelector((state) => state.usersReducer);
-  const postsData = useSelector((state) => state.postReducer);
-  /* je récupére les infos de mon user connecté  */
-  const userData = useSelector((state) => state.userReducer);
-  
-  const [truncatedText, setTruncatedText] = useState("");
+  /* je récupére le nom de l'auteur du post */
+  const author = usersData.find((user) => user._id === post.posterId);
 
-  useEffect(() => {
-    if (post.text && post.text.length > 400) {
-      setTruncatedText(post.text.slice(0, 400) + "...");
-    } else {
-      setTruncatedText(post.text);
-    }
-  }, [post.text]);
+  const [truncatedText, setTruncatedText] = useState(
+    post.text ? post.text.slice(0, 400) + "..." : ""
+  );
 
   return (
     <Card sx={{ m: 1 }}>
@@ -57,6 +48,11 @@ export default function PostCard({ post }) {
             <Grid container direction="column" spacing={3}>
               <Grid item>
                 <Typography variant="h7" component="div">
+                  Créer par : {author.pseudo}
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant="h6" component="div">
                   {post.title}
                 </Typography>
               </Grid>
@@ -73,21 +69,23 @@ export default function PostCard({ post }) {
                   sx={{ justifyContent: "space-between", marginTop: 20 }}
                 >
                   <Stack direction="row" spacing={1} alignItems="center">
-                    <IconButton>
-                      <CommentIcon />
+                    <IconButton  aria-label="Comment">
+                      <Comment />
                     </IconButton>
                     <Typography variant="caption" color="text.secondary">
                       {post.comments.length}
                     </Typography>
                   </Stack>
+
                   <Stack direction="row" spacing={1} alignItems="center">
-                    <IconButton>
-                      <FavoriteIcon />
+                    <IconButton  aria-label="Like">
+                      <PostLikeButton post={post}/>
                     </IconButton>
                     <Typography variant="caption" color="text.secondary">
                       {post.likers.length}
                     </Typography>
                   </Stack>
+
                   <Stack direction="row" spacing={1} alignItems="center">
                     <Button sx={{ alignSelf: "flex-end" }}>
                       Lire la suite
