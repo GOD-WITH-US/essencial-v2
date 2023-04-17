@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addPost } from "../../actions/post.action";
-import { Grid, Typography, Button, TextField, MenuItem } from "@mui/material";
+import {
+  Grid,
+  Typography,
+  Button,
+  TextField,
+  MenuItem,
+  IconButton,
+} from "@mui/material";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import Header from "../../components/Header/header";
 
@@ -53,22 +60,35 @@ const CreatePost = () => {
         <Header />
       </Grid>
 
-      <Grid item xs={12}>
+      <Grid item sx={{textAlign:"center"}} >
         <Typography variant="h4">Créer une Publication</Typography>
       </Grid>
 
-      <Grid item xs={12} sm={12}>
+      <Grid item style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          width: "30%",
+          minWidth: "20em",
+        }}>
         <TextField
           label="Votre titre"
           value={title}
           onChange={(event) => setTitle(event.target.value)}
           required
           fullWidth
-          sx={{ width: "30em" }}
         />
       </Grid>
 
-      <Grid item xs={12} sm={12}>
+      <Grid item
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          width: "30%",
+          minWidth: "20em",
+        }}
+      >
         <TextField
           select
           label="Choisir une catégorie"
@@ -76,7 +96,6 @@ const CreatePost = () => {
           onChange={(event) => setCategory(event.target.value)}
           required
           fullWidth
-          sx={{ width: "30em" }}
         >
           <MenuItem value="">--Veuillez choisir une catégorie--</MenuItem>
           <MenuItem value="Réalisation">Réalisation</MenuItem>
@@ -91,7 +110,13 @@ const CreatePost = () => {
         </TextField>
       </Grid>
 
-      <Grid item xs={12}>
+      <Grid item  style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          width: "50%",
+          minWidth: "20em",
+        }}>
         <TextField
           label="Ajouter votre texte"
           multiline
@@ -100,18 +125,22 @@ const CreatePost = () => {
           onChange={(event) => setText(event.target.value)}
           required
           fullWidth
-          sx={{ width: "80vh" }}
         />
       </Grid>
-      <Grid item xs={12}>
-        <input
-          accept="image/*"
-          type="file"
-          name="file"
-          onChange={(event) => setFile(event.target.files[0])}
-        />
+
+      <Grid item>
+        <IconButton color="primary" component="label">
+          <AddAPhotoIcon sx={{ fontSize: "1.4em" }} />
+          <input
+            accept="image/*"
+            type="file"
+            name="file"
+            style={{ display: "none" }}
+          />
+        </IconButton>
       </Grid>
-      <Grid item xs={12}>
+
+      <Grid item>
         <Button
           variant="contained"
           onClick={handleSubmit}

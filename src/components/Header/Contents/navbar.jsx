@@ -125,12 +125,14 @@ export default function PrimarySearchAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton size="large" color="inherit">
-          <HomeIcon />
-        </IconButton>
-        <p>Acceuil</p>
-      </MenuItem>
+      <NavLink to="/home">
+        <MenuItem>
+          <IconButton size="large" color="inherit">
+            <HomeIcon />
+          </IconButton>
+          <p>Acceuil</p>
+        </MenuItem>
+      </NavLink>
 
       <NavLink to="/post">
         <MenuItem>
@@ -206,9 +208,11 @@ export default function PrimarySearchAppBar() {
               </IconButton>
             </NavLink>
 
-            <IconButton size="large" color="inherit">
-              <HomeIcon sx={{ color: "#FFFFFF" }} />
-            </IconButton>
+            <NavLink to="/home">
+              <IconButton size="large" color="inherit">
+                <HomeIcon sx={{ color: "#FFFFFF" }} />
+              </IconButton>
+            </NavLink>
             <Box sx={{ mr: 2 }}>
               {uid ? (
                 <Box>

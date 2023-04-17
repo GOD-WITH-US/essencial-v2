@@ -38,11 +38,11 @@ const Thread = () => {
             <Grid
               item
               key={post._id}
-              xs={12}
-              sm={12}
-              md={12}
-              lg={12}
-              xl={12}
+              xs={10}
+              sm={10}
+              md={10}
+              lg={10}
+              xl={10}
               sx={{ marginX: "auto" }}
             >
               <PostCard post={post} />
