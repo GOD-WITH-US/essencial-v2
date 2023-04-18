@@ -2,7 +2,7 @@ import { Grid, Box } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useState, useEffect } from "react";
 import { getPosts } from "../../../actions/post.action";
-import { isEmpty } from "../../Utils";
+
 //pages
 import PostCard from "./PostCard";
 
@@ -30,10 +30,11 @@ const Thread = () => {
             md: "3em",
             lg: "3em",
             xl: "3em",
-          }
+          },
         }}
       >
-        {!isEmpty(posts) &&
+        {Array.isArray(posts) &&
+          posts.length > 0 &&
           posts.map((post) => (
             <Grid
               item

@@ -8,12 +8,14 @@ import Contact from "../../pages/contact";
 import SignIn from "../../pages/signIn";
 import SignUp from "../../pages/signUp";
 import CreatePost from "../../pages/Post/CreatePost";
+import ReadOnePost from "../../pages/Post/ReadOnePost";
 
 const AllRoutes = () => {
   return (
     <Routes>
       <Route exact path="/" element={<SignIn />} />
       <Route exact path="/profil" element={<Profil />} />
+      <Route path="/post/:id" element={<ReadOnePost />} />
       <Route exact path="/post" element={<CreatePost />} />
       <Route exact path="/home" element={<HomeConnexion />} />
       <Route exact path="/inscription" element={<SignUp />} />

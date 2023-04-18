@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -9,9 +10,9 @@ import { useSelector } from "react-redux";
 import PostLikeButton from "../../Buttons/PostLikeButton";
 
 export default function PostCard({ post }) {
-  /* je récupére mes users */
+  //  je récupére mes users
   const usersData = useSelector((state) => state.usersReducer);
-  /* je récupére le nom de l'auteur du post */
+  // je récupére le nom de l'auteur du post
   const author = usersData.find((user) => user._id === post.posterId);
 
   const [truncatedText, setTruncatedText] = useState(
@@ -69,7 +70,7 @@ export default function PostCard({ post }) {
                   sx={{ justifyContent: "space-between", marginTop: 20 }}
                 >
                   <Stack direction="row" spacing={1} alignItems="center">
-                    <IconButton  aria-label="Comment">
+                    <IconButton aria-label="Comment">
                       <Comment />
                     </IconButton>
                     <Typography variant="caption" color="text.secondary">
@@ -78,16 +79,17 @@ export default function PostCard({ post }) {
                   </Stack>
 
                   <Stack direction="row" spacing={1} alignItems="center">
-                    <IconButton  aria-label="Like">
-                      <PostLikeButton post={post}/>
+                    <IconButton aria-label="Like">
+                      <PostLikeButton post={post} />
                     </IconButton>
-                    <Typography variant="caption" color="text.secondary">
-                      {post.likers.length}
-                    </Typography>
                   </Stack>
 
                   <Stack direction="row" spacing={1} alignItems="center">
-                    <Button sx={{ alignSelf: "flex-end" }}>
+                    <Button
+                      sx={{ alignSelf: "flex-end" }}
+                      component={NavLink}
+                      to={`/post/${post._id}`}
+                    >
                       Lire la suite
                     </Button>
                   </Stack>
