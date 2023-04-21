@@ -67,7 +67,9 @@ const ReadOnePost = () => {
         <Header />
       </Grid>
 
-      <Card sx={{ width: "90%", display: "flex", flexDirection: "column",mb:4 }}>
+      <Card
+        sx={{ width: "90%", display: "flex", flexDirection: "column", mb: 4 }}
+      >
         <CardContent>
           <Typography variant="h5" align="center" sx={{ mb: 1 }}>
             {post.title}
@@ -77,7 +79,7 @@ const ReadOnePost = () => {
             spacing={2}
             sx={{
               ml: 4,
-              mb:2,
+              mb: 2,
               display: "flex",
               flexDirection: "row",
               alignItems: "center",
@@ -109,29 +111,29 @@ const ReadOnePost = () => {
             }}
           >
             {post.text && (
-          <Typography
-          variant="body1"
-          sx={{
-            whiteSpace: "pre-wrap",
-            marginY: "1em",
-            marginX: "auto",
-            maxWidth: "50em",
-            minWidth:"10em",
-            wordWrap: "break-word",
-            textAlign: "center",
-            fontSize: "1em",
-            lineHeight: "1em",
-            wordBreak: "break-all",
-            "@media screen and (max-width: 37.5em)": {
-              textAlign: "left",
-              marginX: "1em",
-              fontSize: "0.9em",
-              lineHeight: "1.3em",
-            },
-          }}
-        >
-          {post.text.replace(/[.!?]/g, (match) => `${match}\n`)}
-        </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  whiteSpace: "pre-wrap",
+                  marginY: "1em",
+                  marginX: "auto",
+                  maxWidth: "50em",
+                  minWidth: "10em",
+                  wordWrap: "break-word",
+                  textAlign: "center",
+                  fontSize: "1em",
+                  lineHeight: "1em",
+                  wordBreak: "break-all",
+                  "@media screen and (max-width: 37.5em)": {
+                    textAlign: "left",
+                    marginX: "1em",
+                    fontSize: "0.9em",
+                    lineHeight: "1.3em",
+                  },
+                }}
+              >
+                {post.text.replace(/[.!?]/g, (match) => `${match}\n`)}
+              </Typography>
             )}
             <Stack alignItems="center" xs={12} sm={8}>
               <Stack direction="row" spacing={1} alignItems="center">
