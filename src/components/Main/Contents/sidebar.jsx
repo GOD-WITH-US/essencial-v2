@@ -19,7 +19,7 @@ const Sidebar = () => {
       item
       textAlign="center"
       sx={{
-        position:"fixed",
+        position: "fixed",
         pt: 20,
       }}
     >

@@ -17,6 +17,7 @@ export const getUser = (uid) => {
   };
 };
 
+
 export const updateBio = (data) => {
   return (dispatch, getState) => {
     const { userReducer: { _id } } = getState(); // récupère l'ID de l'utilisateur actuel depuis le state

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addPost } from "../../actions/post.action";
 import {
@@ -16,36 +16,47 @@ const CreatePost = () => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.userReducer);
 
-  const [title, setTitle] = useState("");
-  const [category, setCategory] = useState("");
-  const [text, setText] = useState("");
-  const [file, setFile] = useState(null);
+  const [post, setPost] = useState({
+    title: "",
+    category: "",
+    text: "",
+    file: null,
+  });
 
-  const [userId, setUserId] = useState("");
-  const [dateTime, setDateTime] = useState("");
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setPost({
+      ...post,
+      [name]: value,
+    });
+  };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setPost({
+      ...post,
+      file,
+    });
+  };
 
-    // Créer un objet FormData pour envoyer les informations du post au serveur
+  const handleSubmit = () => {
     const formData = new FormData();
-    formData.append("title", title);
-    formData.append("category", category);
-    formData.append("text", text);
-    formData.append("file", file);
+    formData.append("title", post.title);
+    formData.append("category", post.category);
+    formData.append("text", post.text);
+    formData.append("file", post.file);
     formData.append("posterId", userData._id);
     formData.append("dateTime", new Date().toISOString());
 
-    console.log(formData);
-
     dispatch(addPost(formData))
       .then(() => {
-        setTitle("");
-        setCategory("");
-        setText("");
-        setFile("");
-        setUserId("");
-        setDateTime("");
+        // Réinitialiser le formulaire après l'ajout de la publication
+        setPost({
+          title: "",
+          category: "",
+          text: "",
+          file: null,
+        });
       })
       .catch((error) => console.log(error));
   };
@@ -60,27 +71,12 @@ const CreatePost = () => {
         <Header />
       </Grid>
 
-      <Grid item sx={{textAlign:"center"}} >
+      <Grid item sx={{ textAlign: "center" }}>
         <Typography variant="h4">Créer une Publication</Typography>
       </Grid>
 
-      <Grid item style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          width: "30%",
-          minWidth: "20em",
-        }}>
-        <TextField
-          label="Votre titre"
-          value={title}
-          onChange={(event) => setTitle(event.target.value)}
-          required
-          fullWidth
-        />
-      </Grid>
-
-      <Grid item
+      <Grid
+        item
         style={{
           display: "flex",
           flexDirection: "column",
@@ -90,39 +86,64 @@ const CreatePost = () => {
         }}
       >
         <TextField
-          select
-          label="Choisir une catégorie"
-          value={category}
-          onChange={(event) => setCategory(event.target.value)}
+          label="Votre titre"
+          name="title"
+          value={post.title}
+          onChange={handleChange}
           required
           fullWidth
-        >
-          <MenuItem value="">--Veuillez choisir une catégorie--</MenuItem>
-          <MenuItem value="Réalisation">Réalisation</MenuItem>
-          <MenuItem value="Tutoriel">Tutoriel</MenuItem>
-          <MenuItem value="Alimentation">Alimentation</MenuItem>
-          <MenuItem value="Jardinage">Jardinage</MenuItem>
-          <MenuItem value="Elevage">Elevage</MenuItem>
-          <MenuItem value="Maison">Maison</MenuItem>
-          <MenuItem value="Eau">Eau</MenuItem>
-          <MenuItem value="Dechets">Dechets</MenuItem>
-          <MenuItem value="Energie">Energie</MenuItem>
-        </TextField>
+        />
       </Grid>
 
-      <Grid item  style={{
+      <Grid
+        item
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          width: "30%",
+          minWidth: "20em",
+        }}
+      >
+        <TextField
+    select
+    label="Choisir une catégorie"
+    name="category"
+    value={post.category}
+    onChange={handleChange}
+    required
+    fullWidth
+  >
+    <MenuItem value="">--Veuillez choisir une catégorie--</MenuItem>
+    <MenuItem value="Réalisation">Réalisation</MenuItem>
+    <MenuItem value="Tutoriel">Tutoriel</MenuItem>
+    <MenuItem value="Alimentation">Alimentation</MenuItem>
+    <MenuItem value="Jardinage">Jardinage</MenuItem>
+    <MenuItem value="Elevage">Elevage</MenuItem>
+    <MenuItem value="Maison">Maison</MenuItem>
+    <MenuItem value="Eau">Eau</MenuItem>
+    <MenuItem value="Dechets">Dechets</MenuItem>
+    <MenuItem value="Energie">Energie</MenuItem>
+  </TextField>
+      </Grid>
+
+      <Grid
+        item
+        style={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           width: "50%",
           minWidth: "20em",
-        }}>
+        }}
+      >
         <TextField
           label="Ajouter votre texte"
           multiline
           rows={10}
-          value={text}
-          onChange={(event) => setText(event.target.value)}
+          name="text"
+          value={post.text}
+          onChange={handleChange}
           required
           fullWidth
         />
@@ -136,6 +157,7 @@ const CreatePost = () => {
             type="file"
             name="file"
             style={{ display: "none" }}
+            onChange={handleFileChange}
           />
         </IconButton>
       </Grid>
@@ -145,9 +167,9 @@ const CreatePost = () => {
           variant="contained"
           onClick={handleSubmit}
           color="primary"
-          type="submit"
-          //désactive la soumission du formulaire si les champs ne sont pas tous complété
-          disabled={!title || !category || !text || !file}
+          type="button" // Pas besoin de type "submit"
+          // Désactive la soumission du formulaire si les champs ne sont pas tous complétés
+          disabled={!post.title || !post.category || !post.text || !post.file}
         >
           Publication
         </Button>
