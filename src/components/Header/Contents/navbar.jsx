@@ -130,7 +130,7 @@ export default function PrimarySearchAppBar() {
           <IconButton size="large" color="inherit">
             <HomeIcon />
           </IconButton>
-          <p>Acceuil</p>
+          <p>Accueil</p>
         </MenuItem>
       </NavLink>
 
